@@ -37,14 +37,28 @@ typedef enum OS_TASK_STA
     TASK_SUSPEND = 2,//挂起
 } OS_TASK_STA;
 
-typedef struct
+struct _OS_TCB
 {
     STACK_TypeDef *StkAddr;				 //任务栈顶
     TICKS_TypeDef OSTCBDly;				 //任务延时时钟
     OS_TASK_STA State;				     //任务状态
+    struct _OS_TCB *next;
+    struct _OS_TCB *pre;
 
-} OS_TCB, *OS_TCBP;
+} ;
 
+typedef struct _OS_TCB OS_TCB;
+typedef struct _OS_TCB *OS_TCBP;
+
+struct ebox_tcb{
+    STACK_TypeDef *StkAddr;				 //任务栈顶
+    TICKS_TypeDef OSTCBDly;				 //任务延时时钟
+    OS_TASK_STA State;				     //任务状态
+    struct ebox_tcb *netxt;
+    struct ebox_tcb *pre;
+};
+
+typedef struct ebox_tcb ebox_tcb_t;
 /******************全局变量声明***************/
 
 #define OS_TICKS_PER_SEC  1000      // 设置一秒内的时钟节拍数,由于系统时钟节拍由ebox提供，此值无效，默认1000

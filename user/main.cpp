@@ -1,94 +1,91 @@
-/*
-file   : *.cpp
-author : shentq
-version: V1.0
-date   : 2015/7/5
-
-Copyright 2015 shentq. All Rights Reserved.
-*/
-
-//STM32 RUN IN eBox
-
 
 #include "ebox.h"
-#include "bsp_ebox.h"
-#include "ebox_mem.h"
-
-//#include "../Ethernet3/utility/w5500.h"
-//#include "../Ethernet3/Ethernet3.h"
-//#include "../Ethernet3/EthernetUdp3.h"         // UDP library from: bjoern@cs.stanford.edu 12/30/2008
-
-/**
-	*	1	此例程需要调用eDrive目录下的w5500模块
-	*	2	此例程演示了w5500的初始化，基本信息打印
-	*/
+#include "../os/ebox_os/os.h"
 
 
+#define TASK_1_STK_SIZE 128
+#define TASK_2_STK_SIZE 128
+#define TASK_3_STK_SIZE 128
 
-/* 定义例程名和例程发布日期 */
-#define EXAMPLE_NAME	"TCP client example"
-#define EXAMPLE_DATE	"2018-08-11"
+static STACK_TypeDef TASK_1_STK[TASK_1_STK_SIZE];
+static STACK_TypeDef TASK_2_STK[TASK_2_STK_SIZE];
+static STACK_TypeDef TASK_3_STK[TASK_3_STK_SIZE];
 
+#define TASK1_PRIO 0
+#define TASK2_PRIO 1
+#define TASK3_PRIO 2
 
-//uint8_t mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-//IPAddress local_ip(192, 168, 1, 177);
+void task_1();
+void task_2();
+void task_3();
 
-//IPAddress server_ip(192,168,1,101);
-//uint16_t server_port = 6000;
-
-
-//EthernetClient client;
-
-
+uint32_t task1_counter = 0;
+uint32_t task2_counter = 0;
+uint32_t task3_counter;
 void setup()
 {
     ebox_init();
-    UART.begin(115200);
-//    print_log(EXAMPLE_NAME, EXAMPLE_DATE);
+    os_init();
 
+    uart1.begin(115200);
+    uart1.printf("\r\nuart1 115200 ok!");
 
-//    Ethernet.begin(mac, local_ip);
-//    if (client.connect(server_ip, server_port))
-//    {
-//        Serial.println("connected");
-//    }
-//    else
-//    {
-//        Serial.println("connection failed");
-//    }
+    uart1.printf("\r\nos初始化!");
+    PB8.mode(OUTPUT_PP);
+    PB9.mode(OUTPUT_PP);
+    PB10.mode(OUTPUT_PP);
 
+    os_task_create(task_1, &TASK_1_STK[TASK_1_STK_SIZE - 1], TASK1_PRIO);
+    os_task_create(task_2, &TASK_2_STK[TASK_2_STK_SIZE - 1], TASK2_PRIO);
+    os_task_create(task_3, &TASK_3_STK[TASK_3_STK_SIZE - 1], TASK3_PRIO);
+    uart1.printf("\r\nos创建任务成功");
+
+    os_start();
 }
-uint32_t last_time = 0;
+void task_1()
+{
+    while(1)
+    {
+        task1_counter++;
+        uart1.printf("Task 1 Running!!! cpu usage:%0.2f[%05d]\r\n",os_get_cpu_usage(),task1_counter);
+        PB8 = !PB8;
+        os_time_delay(1000);
+    }
+}
+void task_2()
+{
+    while(1)
+    {
+        task2_counter++;
+        PB9 = !PB9;
+        uart1.printf("Task 2 Running!!![%05d]\r\n",task2_counter);
+        os_time_delay(1000);
+    }
+}
+void task_3()
+{
+    while(1)
+    {
+        //PB10 = !PB10;
+        //uart1.printf("Task 3 Running!!!\r\n");
+        int len = uart1.available();
+        for(int i = 0; i < len; i++ )
+        {
+            char c = uart1.read();
+
+            uart1.printf("%c", c);
+
+        }
+        os_time_delay(1);
+    }
+}
+
 int main(void)
 {
     setup();
-
-    last_time = millis();
     while(1)
-    {
-//        if (!client.connected())
-//        {
-//            client.stop();
-//            client.connect(server_ip, server_port);
-//       }
-//        else
-//        {
-//            if (client.available())
-//            {
-//                char c = client.read();
-//                client.print(c);
-//            }
-
-//            if(millis() - last_time > 1000)
-//            {
-//                last_time = millis();
-//                client.println("hello world");
-//                client.println();
-//            }
-//        }
+    {  
     }
-
-
 }
 
 

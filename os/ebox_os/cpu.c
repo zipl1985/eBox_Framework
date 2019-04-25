@@ -14,8 +14,9 @@ This specification is preliminary and is subject to change at any time without n
 */
 
 #include "cpu.h"
-OS_TCBP OS_Tcb_CurP;
-OS_TCBP OS_Tcb_HighRdyP;
+
+OS_TCB *OS_Tcb_CurP;
+OS_TCB *OS_Tcb_HighRdyP;
 
 /******************全局变量定义***************/
 INT32U OSTick;
@@ -27,7 +28,7 @@ INT32U   		OSRdyTbl;     							// 就绪任务列表
 PRIO_TypeDef	OSPrioCur;		            	// 当前任务的优先级
 PRIO_TypeDef  OSPrioHighRdy	;           	// 即将要运行任务的优先级
 OS_TCB        TCB[OS_TASKS + 1];			// 定义任务控制块TCB数组
-
+ebox_tcb_t    ebox_t[128];
 void CPU_task_create(TASK_TypeDef task, STACK_TypeDef *stk, PRIO_TypeDef t_Prio)
 {
     STACK_TypeDef  *p_stk;
@@ -51,6 +52,7 @@ void CPU_task_create(TASK_TypeDef task, STACK_TypeDef *stk, PRIO_TypeDef t_Prio)
     *(--p_stk) = (STACK_TypeDef)0x06060606uL;                          // R6
     *(--p_stk) = (STACK_TypeDef)0x05050505uL;                          // R5
     *(--p_stk) = (STACK_TypeDef)0x04040404uL;                          // R4
+
 
     TCB[t_Prio].StkAddr = p_stk;
     TCB[t_Prio].OSTCBDly = 0;

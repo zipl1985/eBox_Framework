@@ -895,61 +895,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>network</GroupName>
-          <Files>
-            <File>
-              <FileName>socket.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\utility\socket.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>w5500.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\utility\w5500.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Dhcp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\Dhcp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Dns.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\Dns.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Ethernet3.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\Ethernet3.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EthernetClient.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\EthernetClient.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EthernetServer.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\EthernetServer.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EthernetUdp3.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\EthernetUdp3.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>esp8266</GroupName>
-          <Files>
-            <File>
-              <FileName>ESP8266.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\WeeESP8266\ESP8266.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>user</GroupName>
           <Files>
             <File>
@@ -961,21 +906,6 @@
               <FileName>bsp_ebox.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\..\user\board\spark_f1\bsp_ebox.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ecat_user.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\user\ecat_user.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>mqtt</GroupName>
-          <Files>
-            <File>
-              <FileName>PubSubClient.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\mqtt\src\PubSubClient.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -996,71 +926,6 @@
               <FileName>os_cpu_a.asm</FileName>
               <FileType>2</FileType>
               <FilePath>..\..\..\os\ebox_os\os_cpu_a.asm</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>modbus</GroupName>
-          <Files>
-            <File>
-              <FileName>Modbus.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\modbus\libraries\Modbus\Modbus.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ModbusIP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\modbus\libraries\ModbusIP\ModbusIP.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>arducat</GroupName>
-          <Files>
-            <File>
-              <FileName>coeappl.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\coeappl.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ecatappl.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ecatappl.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ecatcoe.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ecatcoe.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ecatslv.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ecatslv.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ethercat.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ethercat.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>hw.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\hw.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>mailbox.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\mailbox.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>objdef.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\objdef.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>sdoserv.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\sdoserv.cpp</FilePath>
             </File>
           </Files>
         </Group>

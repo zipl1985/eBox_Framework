@@ -48,7 +48,7 @@ typedef enum
 #define WHITE	0xffff
 #define BLACK	0x0000
 #define YELLOW  0xFFE0
-#define GRAY0   0xEF7D   	//灰色0 3165 00110 001011 00101
+#define GRAY0   0xEF7D   	    //灰色0 3165 00110 001011 00101
 #define GRAY1   0x8410      	//灰色1      00000 000000 00000
 #define GRAY2   0x4208      	//灰色2  1111111111011111
 class Lcd : public Vhmi
@@ -104,7 +104,7 @@ private:
     Gpio *rs;
     Gpio *rst;
     Spi  *spi;
-    SpiConfig_t config;
+    Spi::Config_t config;
     uint16_t width, height;
     uint8_t initialized;
 

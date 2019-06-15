@@ -1,16 +1,58 @@
+#include "ebox_core.h"
 #include "ebox_virtual_hmi.h"
 
-
-void Vhmi::draw_v_line(int16_t x, int16_t y, int16_t h, uint32_t color)
+uint16_t bgr2rgb(uint16_t c)
 {
-    while(h--)
-        draw_pixel(x, y++, color);
+    uint16_t  r, g, b, rgb;
+    b = (c >> 0) & 0x1f;
+    g = (c >> 5) & 0x3f;
+    r = (c >> 11) & 0x1f;
+    rgb = (b << 11) + (g << 5) + (r << 0);
+    return(rgb);
 
 }
-void Vhmi::draw_h_line(int16_t x, int16_t y, int16_t w, uint32_t color)
+
+uint16_t rgb24_2_rgb565(int r, int g, int b)   //应该会损失数据内容
 {
-    while(w--)
-        draw_pixel(x++, y, color);
+        
+return (uint16_t)(  ((unsigned(r) << 8) & 0xF800) | 
+            
+                    ((unsigned(g) << 3) & 0x7E0)  |
+                    ((unsigned(b) >> 3))
+                 );
+}
+
+uint16_t rgb24_2_rgb565(uint32_t color)   //应该会损失数据内容
+{
+        
+return (uint16_t)(  ((color & 0xF80000) >> 8) | 
+                    ((color & 0x00FC00) >> 5)|
+                    ((color & 0x0000F1) >> 3)
+                 );
+}
+void Vhmi::draw_v_line(int16_t x, int16_t y0, int16_t y1, uint32_t color)
+{
+    int16_t tempy0,tempy1;
+    tempy0 = min(y0,y1);
+    tempy1 = max(y0,y1);
+    
+    while(tempy1 >= tempy0)
+        draw_pixel(x, tempy0++, color);
+
+}
+void Vhmi::draw_h_line(int16_t x0, int16_t y0, int16_t x1, uint32_t color)
+{
+ 
+    int16_t tempx0,tempx1;
+    tempx0 = min(x0,x1);
+    tempx1 = max(x0,x1);
+    
+    while(tempx1 >= tempx0)
+        draw_pixel(tempx0++, y0, color);
+    
+    
+//while(w--)
+//    draw_pixel(x++, y, color);
 
 }
 
@@ -113,9 +155,9 @@ void Vhmi::draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t co
 void Vhmi::fill_rect(int16_t x, int16_t y, int16_t x1, int16_t y1, uint32_t color)
 {
     int16_t tempx = x, tempy = y;
-    for(tempx = x; tempx < x1; tempx++)
+    for(tempx = x; tempx <= x1; tempx++)
     {
-        for(tempy = y; tempy < y1; tempy++)
+        for(tempy = y; tempy <= y1; tempy++)
             draw_pixel(tempx, tempy, color);
     }
 }
@@ -156,4 +198,7 @@ void Vhmi::draw_circle(int16_t x, int16_t y, int16_t r, uint32_t color)
         draw_pixel(x + b, y - a, color);
         draw_pixel(x - b, y - a, color);
     }
+}
+void Vhmi::flush()
+{
 }

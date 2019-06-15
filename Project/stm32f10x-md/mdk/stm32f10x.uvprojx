@@ -138,7 +138,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -274,7 +274,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x20000</Size>
+                <Size>0x2000000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>ARM_MATH_CM3</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\ebox\hardware\cortex-m3;..\..\..\ebox\hardware\cortex-m3\Peripherals;..\..\..\ebox\core;..\..\..\component;..\..\..\component\edriver;..\..\..\component\apps;..\..\..\mcuLib\stm32f10x\libraries\STM32F10x_StdPeriph_Driver\inc;..\..\..\mcuLib\stm32f10x\libraries\CMSIS\CM3\CoreSupport;..\..\..\mcuLib\stm32f10x\libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x;..\..\..\user;..\..\..\user\board\spark_f1;..\..\..\component\ddc;..\..\..\component\stepMotor;..\..\..\component\gui;..\..\..\component\Firmata;..\..\..\component\apps\Filters;..\..\..\component\apps\Filters\normal;..\..\..\component\modbus\libraries\Modbus;..\..\..\component\modbus\libraries\ModbusSerial;..\..\..\component\WeeESP8266;..\..\..\ebox\core\port;..\..\..\component\MPU6050;..\..\..\component\mqtt\src;..\..\..\os\ebox_os;..\..\..\component\Ethernet3;..\..\..\component\Ethernet3\utility;..\..\..\component\modbus\libraries\ModbusIP;..\..\..\component\soft_uart;..\..\..\component\Firmata;..\..\..\component\Firmata\utility;..\..\..\component\arducat\libraries\arducat</IncludePath>
+              <IncludePath>..\..\..\ebox\hardware\cortex-m3;..\..\..\ebox\hardware\cortex-m3\Peripherals;..\..\..\ebox\core;..\..\..\component;..\..\..\component\edriver;..\..\..\component\apps;..\..\..\mcuLib\stm32f10x\libraries\STM32F10x_StdPeriph_Driver\inc;..\..\..\mcuLib\stm32f10x\libraries\CMSIS\CM3\CoreSupport;..\..\..\mcuLib\stm32f10x\libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x;..\..\..\user;..\..\..\user\board\spark_f1;..\..\..\component\ddc;..\..\..\component\stepMotor;..\..\..\component\gui;..\..\..\component\Firmata;..\..\..\component\apps\Filters;..\..\..\component\apps\Filters\normal;..\..\..\component\modbus\libraries\Modbus;..\..\..\component\modbus\libraries\ModbusSerial;..\..\..\component\WeeESP8266;..\..\..\ebox\core\port;..\..\..\component\MPU6050;..\..\..\component\mqtt\src;..\..\..\os\ebox_os;..\..\..\component\Ethernet3;..\..\..\component\Ethernet3\utility;..\..\..\component\modbus\libraries\ModbusIP;..\..\..\component\soft_uart;..\..\..\component\Firmata;..\..\..\component\Firmata\utility;..\..\..\component\arducat\libraries\arducat;..\..\..\component\fat</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -828,26 +828,6 @@
               <FilePath>..\..\..\component\edriver\DS3231.cpp</FilePath>
             </File>
             <File>
-              <FileName>L3G4200D.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\edriver\L3G4200D.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303dhlc.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\edriver\lsm303dhlc.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MPU6050.CPP</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\MPU6050\MPU6050.CPP</FilePath>
-            </File>
-            <File>
-              <FileName>at24c02.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\edriver\at24c02.cpp</FilePath>
-            </File>
-            <File>
               <FileName>w25x16.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\..\component\edriver\w25x16.cpp</FilePath>
@@ -863,9 +843,49 @@
               <FilePath>..\..\..\component\edriver\LTC1446.cpp</FilePath>
             </File>
             <File>
-              <FileName>si4432.cpp</FileName>
+              <FileName>OLED_SSD1322.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\edriver\si4432.cpp</FilePath>
+              <FilePath>..\..\..\component\edriver\OLED_SSD1322.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GT30L32S4W.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\GT30L32S4W.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ds18b20.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\ds18b20.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>mmc_sd.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\mmc_sd.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>at24c02.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\at24c02.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_1.8.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\lcd_1.8.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>parallel_gpio.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\parallel_gpio.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ir_decoder.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\ir\ir_decoder.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ir_encoder.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\ir\ir_encoder.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -878,74 +898,19 @@
               <FilePath>..\..\..\component\apps\EventGpio.cpp</FilePath>
             </File>
             <File>
-              <FileName>EventIo.cpp</FileName>
+              <FileName>EventVar.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\apps\EventIo.cpp</FilePath>
+              <FilePath>..\..\..\component\apps\EventVar.cpp</FilePath>
             </File>
             <File>
-              <FileName>soft_uart.cpp</FileName>
+              <FileName>ebox_virtual_lcd.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\soft_uart\soft_uart.cpp</FilePath>
+              <FilePath>..\..\..\component\edriver\ebox_virtual_lcd.cpp</FilePath>
             </File>
             <File>
-              <FileName>Base64.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\apps\base64\Base64.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>network</GroupName>
-          <Files>
-            <File>
-              <FileName>socket.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\utility\socket.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>w5500.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\utility\w5500.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Dhcp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\Dhcp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Dns.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\Dns.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Ethernet3.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\Ethernet3.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EthernetClient.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\EthernetClient.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EthernetServer.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\EthernetServer.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EthernetUdp3.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\Ethernet3\EthernetUdp3.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>esp8266</GroupName>
-          <Files>
-            <File>
-              <FileName>ESP8266.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\WeeESP8266\ESP8266.cpp</FilePath>
+              <FileName>EventManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\component\apps\EventManager.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -963,9 +928,34 @@
               <FilePath>..\..\..\user\board\spark_f1\bsp_ebox.cpp</FilePath>
             </File>
             <File>
-              <FileName>ecat_user.cpp</FileName>
+              <FileName>ui_main.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\user\ecat_user.cpp</FilePath>
+              <FilePath>..\..\..\user\ui_main.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ui.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\user\ui.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ui_setValue.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\user\ui_setValue.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ui_menu.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\user\ui_menu.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ui_password.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\user\ui_password.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ebox_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\user\board\spark_f1\ebox_config.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1000,67 +990,107 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>modbus</GroupName>
+          <GroupName>fat</GroupName>
           <Files>
             <File>
-              <FileName>Modbus.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\modbus\libraries\Modbus\Modbus.cpp</FilePath>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\component\fat\diskio.c</FilePath>
             </File>
             <File>
-              <FileName>ModbusIP.cpp</FileName>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\component\fat\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>wrapperdiskio.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\modbus\libraries\ModbusIP\ModbusIP.cpp</FilePath>
+              <FilePath>..\..\..\component\fat\wrapperdiskio.cpp</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>arducat</GroupName>
+          <GroupName>gui</GroupName>
           <Files>
             <File>
-              <FileName>coeappl.cpp</FileName>
+              <FileName>Font8_ASCII.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\coeappl.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\Font8_ASCII.cpp</FilePath>
             </File>
             <File>
-              <FileName>ecatappl.cpp</FileName>
+              <FileName>Font16_ASCII.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ecatappl.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\Font16_ASCII.cpp</FilePath>
             </File>
             <File>
-              <FileName>ecatcoe.cpp</FileName>
+              <FileName>Font16_HZ.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ecatcoe.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\Font16_HZ.cpp</FilePath>
             </File>
             <File>
-              <FileName>ecatslv.cpp</FileName>
+              <FileName>Font24_ASCII.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ecatslv.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\Font24_ASCII.cpp</FilePath>
             </File>
             <File>
-              <FileName>ethercat.cpp</FileName>
+              <FileName>Font32_ASCII.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\ethercat.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\Font32_ASCII.cpp</FilePath>
             </File>
             <File>
-              <FileName>hw.cpp</FileName>
+              <FileName>FontCustom.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\hw.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\FontCustom.cpp</FilePath>
             </File>
             <File>
-              <FileName>mailbox.cpp</FileName>
+              <FileName>gui_bitmap.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\mailbox.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\gui_bitmap.cpp</FilePath>
             </File>
             <File>
-              <FileName>objdef.cpp</FileName>
+              <FileName>gui_sidebar.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\objdef.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\gui_sidebar.cpp</FilePath>
             </File>
             <File>
-              <FileName>sdoserv.cpp</FileName>
+              <FileName>gui_text.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\arducat\libraries\arducat\sdoserv.cpp</FilePath>
+              <FilePath>..\..\..\component\gui\gui_text.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>graphic.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\gui\graphic.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gui_button.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\gui\gui_button.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gui_base.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\gui\gui_base.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gui_page.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\gui\gui_page.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gui_list.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\gui\gui_list.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gui_menu.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\gui\gui_menu.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gui_textview.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\gui\gui_textview.cpp</FilePath>
             </File>
           </Files>
         </Group>

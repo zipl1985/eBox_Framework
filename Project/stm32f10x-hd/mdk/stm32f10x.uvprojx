@@ -838,11 +838,6 @@
               <FilePath>..\..\..\component\edriver\lsm303dhlc.cpp</FilePath>
             </File>
             <File>
-              <FileName>MPU6050.CPP</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\MPU6050\MPU6050.CPP</FilePath>
-            </File>
-            <File>
               <FileName>at24c02.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\..\component\edriver\at24c02.cpp</FilePath>
@@ -867,6 +862,11 @@
               <FileType>8</FileType>
               <FilePath>..\..\..\component\edriver\si4432.cpp</FilePath>
             </File>
+            <File>
+              <FileName>parallel_gpio.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\parallel_gpio.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -878,9 +878,14 @@
               <FilePath>..\..\..\component\apps\EventGpio.cpp</FilePath>
             </File>
             <File>
-              <FileName>EventIo.cpp</FileName>
+              <FileName>EventVar.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\..\component\apps\EventIo.cpp</FilePath>
+              <FilePath>..\..\..\component\apps\EventVar.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>EventManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\component\apps\EventManager.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -930,16 +935,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>esp8266</GroupName>
-          <Files>
-            <File>
-              <FileName>ESP8266.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\..\component\WeeESP8266\ESP8266.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>user</GroupName>
           <Files>
             <File>
@@ -951,6 +946,11 @@
               <FileName>bsp_ebox.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\..\user\board\stm32f10x_hd\bsp_ebox.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ebox_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\user\board\stm32f10x_hd\ebox_config.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -981,6 +981,26 @@
               <FileName>os_cpu_a.asm</FileName>
               <FileType>2</FileType>
               <FilePath>..\..\..\os\ebox_os\os_cpu_a.asm</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>mpu6050</GroupName>
+          <Files>
+            <File>
+              <FileName>FourAxle.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\MPU6050\FourAxle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>IMU.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\MPU6050\IMU.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.CPP</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\MPU6050\MPU6050.CPP</FilePath>
             </File>
           </Files>
         </Group>

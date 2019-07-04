@@ -6,7 +6,7 @@ typedef struct
 {
     uint8_t XSize;
     uint8_t XDist;
-    uint8_t BytesPerLine;
+    uint8_t BytesPerLine;											// 每行字节数
     const unsigned char   *pData;
 } GUI_CHARINFO;
 

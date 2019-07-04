@@ -3,10 +3,11 @@
 
 #include "ebox_core.h"
 #include "print.h"
+#include "G_LCD_interface.h"
 
 // 利用串口模拟屏幕
 
-class VLcd : public Vhmi
+class VLcd : public GAPI
 {
 private:
     typedef struct
@@ -33,9 +34,7 @@ private:
     Lcd_t   _lcd;
 		Print		*_p;		//输出设备
 
-    uint32_t _getPosition(int16_t x, int16_t y);		// 根据屏幕位置返回像素在内存位置
-		
-    int16_t current_x, current_y; //仅在调用print相关功能时使用
+    uint32_t _getPosition(int16_t x, int16_t y);		// 根据屏幕位置返回像素在内存位置		
 };
 
 #endif

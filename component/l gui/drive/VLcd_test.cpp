@@ -1,8 +1,9 @@
 #include "ebox.h"
 #include "bsp_ebox.h"
-#include "ebox_virtual_lcd.h"
+#include "virtual_lcd.h"
+#include "dispChar.h"
 
-#define Red	0XF800
+#define Red	0xF800
 
 //#include "gui.h"
 
@@ -20,18 +21,23 @@
 #define EXAMPLE_NAME	"Virtual LCD example"
 #define EXAMPLE_DATE	"2018-08-14"
 
+TextInfo t;
 
-VLcd lcdx;//创建一个虚拟显示器
+VLcd lcdx(&UART);//创建一个虚拟显示器
 //GUI gui;//创建一个GUI对象
+TextInfo t;
+TEXTAPI print(&lcdx,&t);
 
 void setup()
 {
     ebox_init();
     UART.begin(115200);
 
-    lcdx.begin(10, 10); //初始化显示器宽度32，高度32
-		lcdx.draw_h_line(3,3,5,Red);
-		lcdx.print_1bit (UART);
+    lcdx.begin(20, 20); //初始化显示器宽度32，高度32
+		lcdx.clear(0);
+		lcdx.draw_line(1,30,13,13,1);
+		print.dispChar('A');
+		lcdx.flush ();
 
 //    gui.begin(&lcdx, 32, 32); //绑定显示器，并按照显示器尺寸初始化GUI
 //    gui.fill_screen(0);//清空屏幕

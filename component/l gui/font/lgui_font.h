@@ -65,18 +65,18 @@ typedef struct {
 
 // 字符信息
 typedef struct {
-  uint8_t XSize;
-  uint8_t XDist;
-  uint8_t BytesPerLine;												// 每行byte数 
+  uint8_t XSize;															//点阵字符x轴长度
+  uint8_t XDist;															//实际显示x轴长度
+  uint8_t BytesPerLine;												//每行点阵需要的字节数
   const unsigned char * pData;
 } GUI_CHARINFO;
 
 // 均衡字体结构
 typedef struct GUI_FONT_PROP {
-  uint16_t First;                                             /* first character               */
-  uint16_t Last;                                              /* last character                */
+  uint16_t First;                             /* first character               */
+  uint16_t Last;                              /* last character                */
   const GUI_CHARINFO * paCharInfo;            /* 首字符地址    */
-  const struct GUI_FONT_PROP * pNext;         /* pointer to next */
+  const struct GUI_FONT_PROP * pNext;         /* 指向下一个字符区间 */
 } GUI_FONT_PROP;
 
 // 等宽字体
@@ -201,10 +201,10 @@ struct GUI_FONT {
   GUI_ISINFONT*     pfIsInFont;
   const tGUI_ENC_APIList* pafEncode;
   // 
-  uint8_t YSize;         // 高度
-  uint8_t YDist;         
-  uint8_t XMag;
-  uint8_t YMag;
+  uint8_t YSize;         				//点阵字符y轴长度
+  uint8_t YDist;         				//实际显示y轴长度
+  uint8_t XMag;									//x轴放大倍数
+  uint8_t YMag;									//y轴放大倍数
 	// 利用联合体特型使之可以指向不同类型的字体
   union {
     const void          * pFontData;
@@ -281,34 +281,22 @@ which ever one you like best.
 
 */
 typedef enum{
-		DRAWMODE_NORMAL = 0,
-		DRAWMODE_XOR,
-		DRAWMODE_TRANS,
-		DRAWMODE_REV = 1<<2
-}DrawMode_t;
+		DispMode_Normal = 0,									// 0,正常，覆盖任何已经显示的东西
+		DispMode_XOR,													// 1,异或，
+		DispMode_Trans,												// 2,透明, 叠加显示在已有内容上
+		DispMode_Rev = 1<<2										// 4,反转，
+}DispMode_e;
 
-#define LCD_DRAWMODE_NORMAL (0)						// 正常，覆盖任何已经显示的东西
-#define LCD_DRAWMODE_XOR    (1<<0)				// 异或，
-#define LCD_DRAWMODE_TRANS  (1<<1)				// 透明, 叠加显示在已有内容上
-#define LCD_DRAWMODE_REV    (1<<2)				// 反转，
-
-#define GUI_DRAWMODE_NORMAL  LCD_DRAWMODE_NORMAL			// 正常
-#define GUI_DRAWMODE_XOR     LCD_DRAWMODE_XOR					// 异或
-#define GUI_DRAWMODE_TRANS   LCD_DRAWMODE_TRANS				// 透明
-#define GUI_DRAWMODE_REV     LCD_DRAWMODE_REV					// 反转
-#define GUI_DM_NORMAL        LCD_DRAWMODE_NORMAL
-#define GUI_DM_XOR           LCD_DRAWMODE_XOR
-#define GUI_DM_TRANS         LCD_DRAWMODE_TRANS
-#define GUI_DM_REV           LCD_DRAWMODE_REV
-
-#define GUI_TEXTMODE_NORMAL  LCD_DRAWMODE_NORMAL
-#define GUI_TEXTMODE_XOR     LCD_DRAWMODE_XOR
-#define GUI_TEXTMODE_TRANS   LCD_DRAWMODE_TRANS
-#define GUI_TEXTMODE_REV     LCD_DRAWMODE_REV
-#define GUI_TM_NORMAL        LCD_DRAWMODE_NORMAL
-#define GUI_TM_XOR           LCD_DRAWMODE_XOR
-#define GUI_TM_TRANS         LCD_DRAWMODE_TRANS
-#define GUI_TM_REV           LCD_DRAWMODE_REV
+typedef enum{
+		AlignFlag_Horizontal	= 3,			// 水平对齐标志 0011
+		AlignMode_Left = 0,							// 左对齐				0000
+		AlignMode_Right,								// 右对齐				0001
+		AlignMode_Center,								// 水平居中			0010
+		AlignFlag_Vertical		= 3<<2,		// 垂直对齐标志 1100
+		AlignMode_Top  		= 0,					// 顶部对齐			0000
+		AlignMode_Bottom 	= 1<<2,				// 底部对齐			0100
+		AlignMode_Vcenter = 2<<2				// 垂直居中     1000
+}AlignMode_e;
 
 /* Text alignment flags, horizontal */
 #define GUI_TA_HORIZONTAL  (3<<0)
@@ -321,8 +309,7 @@ typedef enum{
 #define GUI_TA_VERTICAL   (3<<2)
 #define GUI_TA_TOP	      (0<<2)
 #define GUI_TA_BOTTOM	    (1<<2)
-#define GUI_TA_BASELINE   (2<<2)
-#define GUI_TA_VCENTER    (3<<2)
+#define GUI_TA_VCENTER    (2<<2)
 
 
 uint8_t        GUI_SetFillStyle (uint8_t Style);

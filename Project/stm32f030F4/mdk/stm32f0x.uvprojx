@@ -871,6 +871,11 @@
               <FileType>8</FileType>
               <FilePath>..\..\..\component\l gui\drive\lTFT9225.cpp</FilePath>
             </File>
+            <File>
+              <FileName>lGUI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\l gui\lGUI.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

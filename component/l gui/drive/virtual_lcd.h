@@ -19,7 +19,7 @@ private:
     } Lcd_t;
 
 public:
-    VLcd(Print *p);
+	VLcd(Print *p,int16_t w,int16_t h);
     ~VLcd();
     void    begin(uint16_t lcd_w, uint16_t lcd_h);
     void    set_xy(int16_t x, int16_t y);

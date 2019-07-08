@@ -21,11 +21,32 @@
                 <File RelativePath="..\..\..\component\apps\color_convert.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\apps\EventGpio.cpp" FileType="3" Output="EventGpio.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\apps\EventGpio.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\apps\EventIo.cpp" FileType="3" Output="EventIo.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\apps\EventIo.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\apps\EventManager.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\apps\EventVar.cpp" FileType="3" Output="EventVar.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\apps\EventVar.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\apps\spiBridge.cpp" FileType="3" Output="spiBridge.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\apps\spiBridge.h" FileType="4" ro="0" bss="0" rw="0" />
+                <Filter Name="base64">
+                    <File RelativePath="..\..\..\component\apps\base64\Base64.cpp" FileType="3" Output="Base64.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\apps\base64\Base64.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <Filter Name="examples">
+                        <Filter Name="base64">
+                            <File RelativePath="..\..\..\component\apps\base64\examples\base64\base64.cpp" FileType="3" Output="base64.o" ro="0" bss="0" rw="0" />
+                        </Filter>
+                    </Filter>
+                </Filter>
+                <Filter Name="FFT">
+                    <Filter Name="Examples">
+                        <File RelativePath="..\..\..\component\apps\FFT\Examples\FFT_01.cpp" FileType="3" Output="FFT_01.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\apps\FFT\Examples\FFT_02.cpp" FileType="3" Output="FFT_02.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\apps\FFT\Examples\FFT_03.cpp" FileType="3" Output="FFT_03.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\apps\FFT\Examples\FFT_04.cpp" FileType="3" Output="FFT_04.o" ro="0" bss="0" rw="0" />
+                    </Filter>
+                    <Filter Name="src">
+                        <File RelativePath="..\..\..\component\apps\FFT\src\arduinoFFT.cpp" FileType="3" Output="arduinoFFT.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\apps\FFT\src\arduinoFFT.h" FileType="4" ro="0" bss="0" rw="0" />
+                    </Filter>
+                </Filter>
                 <Filter Name="Filters">
                     <File RelativePath="..\..\..\component\apps\Filters\filters.h" FileType="4" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\apps\Filters\Kalman.h" FileType="4" ro="0" bss="0" rw="0" />
@@ -74,6 +95,31 @@
                     </Filter>
                 </Filter>
             </Filter>
+            <Filter Name="arducat">
+                <Filter Name="EtherCATSlave" />
+                <Filter Name="libraries">
+                    <Filter Name="arducat">
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\coeappl.cpp" FileType="3" Output="coeappl.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ecatappl.cpp" FileType="3" Output="ecatappl.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ecatappl.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ecatcoe.cpp" FileType="3" Output="ecatcoe.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ecatcoe.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ecatslv.cpp" FileType="3" Output="ecatslv.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ecatslv.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ecat_def.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\esc.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ethercat.cpp" FileType="3" Output="ethercat.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\ethercat.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\hw.cpp" FileType="3" Output="hw.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\mailbox.cpp" FileType="3" Output="mailbox.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\mailbox.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\objdef.cpp" FileType="3" Output="objdef.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\objdef.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\sdoserv.cpp" FileType="3" Output="sdoserv.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\arducat\libraries\arducat\sdoserv.h" FileType="4" ro="0" bss="0" rw="0" />
+                    </Filter>
+                </Filter>
+            </Filter>
             <Filter Name="bigiot">
                 <File RelativePath="..\..\..\component\bigiot\bigiot.cpp" FileType="3" Output="bigiot.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\bigiot\bigiot.h" FileType="4" ro="0" bss="0" rw="0" />
@@ -100,11 +146,17 @@
                 <File RelativePath="..\..\..\component\ddc\ddc_user.cpp" FileType="3" Output="ddc_user.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\ddc\ddc_user.h" FileType="4" ro="0" bss="0" rw="0" />
             </Filter>
+            <Filter Name="dmx512">
+                <File RelativePath="..\..\..\component\dmx512\dmx512.cpp" FileType="3" Output="dmx512.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\dmx512\dmx512.h" FileType="4" ro="0" bss="0" rw="0" />
+            </Filter>
             <Filter Name="edriver">
                 <File RelativePath="..\..\..\component\edriver\74HC595.cpp" FileType="3" Output="74HC595.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\74HC595.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\ads1118.cpp" FileType="3" Output="ads1118.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\ads1118.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\ads1271.cpp" FileType="3" Output="ads1271.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\ads1271.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\ADS7816.cpp" FileType="3" Output="ADS7816.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\ADS7816.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\ADS8866.cpp" FileType="3" Output="ADS8866.o" ro="0" bss="0" rw="0" />
@@ -115,12 +167,12 @@
                 <File RelativePath="..\..\..\component\edriver\AM2315.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\at24c02.cpp" FileType="3" Output="at24c02.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\at24c02.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\at24cxx.cpp" FileType="3" Output="at24cxx.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\at24cxx.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\at45db.cpp" FileType="3" Output="at45db.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\at45db.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\BMP280-3.3.cpp" FileType="3" Output="BMP280-3.3.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\BMP280-3.3.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\Button.cpp" FileType="3" Output="Button.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\Button.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\colorled.cpp" FileType="3" Output="colorled.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\colorled.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\dht11.cpp" FileType="3" Output="dht11.o" ro="0" bss="0" rw="0" />
@@ -142,12 +194,10 @@
                 <File RelativePath="..\..\..\component\edriver\FT800.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\GP2Y1051.cpp" FileType="3" Output="GP2Y1051.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\GP2Y1051.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\GT30L32S4W.cpp" FileType="3" Output="GT30L32S4W.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\GT30L32S4W.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\INA219.cpp" FileType="3" Output="INA219.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\INA219.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\ir_decoder.cpp" FileType="3" Output="ir_decoder.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\ir_decoder.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\ir_encoder.cpp" FileType="3" Output="ir_encoder.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\ir_encoder.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\key_dm.cpp" FileType="3" Output="key_dm.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\key_dm.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\L3G4200D.cpp" FileType="3" Output="L3G4200D.o" ro="0" bss="0" rw="0" />
@@ -180,6 +230,8 @@
                 <File RelativePath="..\..\..\component\edriver\OLED_4spi.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\OLED_i2c.cpp" FileType="3" Output="OLED_i2c.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\OLED_i2c.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\OLED_SSD1322.cpp" FileType="3" Output="OLED_SSD1322.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\OLED_SSD1322.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\parallel_gpio.cpp" FileType="3" Output="parallel_gpio.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\parallel_gpio.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\PCA9685.cpp" FileType="3" Output="PCA9685.o" ro="0" bss="0" rw="0" />
@@ -190,6 +242,8 @@
                 <File RelativePath="..\..\..\component\edriver\si4432.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\sx1278.cpp" FileType="3" Output="sx1278.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\sx1278.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\TFT9225.cpp" FileType="3" Output="TFT9225.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\edriver\TFT9225.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\TingATCmd.cpp" FileType="3" Output="TingATCmd.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\TingATCmd.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\TLC59711.cpp" FileType="3" Output="TLC59711.o" ro="0" bss="0" rw="0" />
@@ -206,8 +260,6 @@
                 <File RelativePath="..\..\..\component\edriver\USR_GM3.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\w25x16.cpp" FileType="3" Output="w25x16.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\w25x16.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\w5500.cpp" FileType="3" Output="w5500.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\edriver\w5500.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\ws2812.cpp" FileType="3" Output="ws2812.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\edriver\ws2812.h" FileType="4" ro="0" bss="0" rw="0" />
                 <Filter Name="SFUD">
@@ -270,6 +322,7 @@
                     <File RelativePath="..\..\..\component\Ethernet3\example\ChatServer.cpp" FileType="3" Output="ChatServer.o" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\Ethernet3\example\DhcpAddressPrinter.cpp" FileType="3" Output="DhcpAddressPrinter.o" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\Ethernet3\example\DhcpChatServer.cpp" FileType="3" Output="DhcpChatServer.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\Ethernet3\example\TcpClient.cpp" FileType="3" Output="TcpClient.o" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\Ethernet3\example\TelnetClient.cpp" FileType="3" Output="TelnetClient.o" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\Ethernet3\example\UdpNtpClient.cpp" FileType="3" Output="UdpNtpClient.o" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\Ethernet3\example\UDPSendReceiveString.cpp" FileType="3" Output="UDPSendReceiveString.o" ro="0" bss="0" rw="0" />
@@ -309,6 +362,7 @@
                 <File RelativePath="..\..\..\component\Firmata\firmata_io.cpp" FileType="3" Output="firmata_io.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\Firmata\firmata_io.h" FileType="4" ro="0" bss="0" rw="0" />
                 <Filter Name="examples">
+                    <File RelativePath="..\..\..\component\Firmata\examples\1.test.cpp" FileType="3" Output="1.test.o" ro="0" bss="0" rw="0" />
                     <Filter Name="AllInputsFirmata" />
                     <Filter Name="AnalogFirmata" />
                     <Filter Name="EchoString" />
@@ -350,64 +404,70 @@
                     <File RelativePath="..\..\..\component\Firmata\utility\WiFiStream.h" FileType="4" ro="0" bss="0" rw="0" />
                 </Filter>
             </Filter>
-            <Filter Name="FreeModbus">
-                <Filter Name="modbus">
-                    <File RelativePath="..\..\..\component\FreeModbus\modbus\mb.c" FileType="1" Output="mb.o" ro="0" bss="0" rw="0" />
-                    <Filter Name="ascii">
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\ascii\mbascii.c" FileType="1" Output="mbascii.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\ascii\mbascii.h" FileType="4" ro="0" bss="0" rw="0" />
-                    </Filter>
-                    <Filter Name="functions">
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\functions\mbfunccoils.c" FileType="1" Output="mbfunccoils.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\functions\mbfuncdiag.c" FileType="1" Output="mbfuncdiag.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\functions\mbfuncdisc.c" FileType="1" Output="mbfuncdisc.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\functions\mbfuncholding.c" FileType="1" Output="mbfuncholding.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\functions\mbfuncinput.c" FileType="1" Output="mbfuncinput.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\functions\mbfuncother.c" FileType="1" Output="mbfuncother.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\functions\mbutils.c" FileType="1" Output="mbutils.o" ro="0" bss="0" rw="0" />
-                    </Filter>
-                    <Filter Name="include">
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\include\mb.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\include\mbconfig.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\include\mbframe.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\include\mbfunc.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\include\mbport.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\include\mbproto.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\include\mbutils.h" FileType="4" ro="0" bss="0" rw="0" />
-                    </Filter>
-                    <Filter Name="rtu">
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\rtu\mbcrc.c" FileType="1" Output="mbcrc.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\rtu\mbcrc.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\rtu\mbrtu.c" FileType="1" Output="mbrtu.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\rtu\mbrtu.h" FileType="4" ro="0" bss="0" rw="0" />
-                    </Filter>
-                    <Filter Name="tcp">
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\tcp\mbtcp.c" FileType="1" Output="mbtcp.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\FreeModbus\modbus\tcp\mbtcp.h" FileType="4" ro="0" bss="0" rw="0" />
-                    </Filter>
-                </Filter>
-                <Filter Name="port">
-                    <File RelativePath="..\..\..\component\FreeModbus\port\FreeModbus.cpp" FileType="3" Output="FreeModbus.o" ro="0" bss="0" rw="0" />
-                    <File RelativePath="..\..\..\component\FreeModbus\port\FreeModbus.h" FileType="4" ro="0" bss="0" rw="0" />
-                    <File RelativePath="..\..\..\component\FreeModbus\port\port.h" FileType="4" ro="0" bss="0" rw="0" />
-                    <File RelativePath="..\..\..\component\FreeModbus\port\portevent.c" FileType="1" Output="portevent.o" ro="0" bss="0" rw="0" />
-                    <File RelativePath="..\..\..\component\FreeModbus\port\portserial.cpp" FileType="3" Output="portserial.o" ro="0" bss="0" rw="0" />
-                    <File RelativePath="..\..\..\component\FreeModbus\port\porttimer.cpp" FileType="3" Output="porttimer.o" ro="0" bss="0" rw="0" />
-                </Filter>
-            </Filter>
             <Filter Name="gui">
+                <File RelativePath="..\..\..\component\gui\F32B_ASCII.c" FileType="1" Output="F32B_ASCII.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\F32_ASCII.c" FileType="1" Output="F32_ASCII.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\FD32.c" FileType="1" Output="FD32.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\FD36x48.c" FileType="1" Output="FD36x48.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\FD48.c" FileType="1" Output="FD48.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\Font16_ASCII.cpp" FileType="3" Output="Font16_ASCII.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\Font16_HZ.cpp" FileType="3" Output="Font16_HZ.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\Font20_HZ.cpp" FileType="3" Output="Font20_HZ.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\Font24_ASCII.cpp" FileType="3" Output="Font24_ASCII.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\Font32_ASCII.cpp" FileType="3" Output="Font32_ASCII.o" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\Font8_ASCII.cpp" FileType="3" Output="Font8_ASCII.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\gui\gui.cpp" FileType="3" Output="gui.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\gui\gui.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\FontCustom.cpp" FileType="3" Output="FontCustom.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\graphic.cpp" FileType="3" Output="graphic.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\graphic.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\guiconfig.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_base.cpp" FileType="3" Output="gui_base.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_base.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\gui_bitmap.cpp" FileType="3" Output="gui_bitmap.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\gui\gui_graphic.cpp" FileType="3" Output="gui_graphic.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\gui\gui_port.cpp" FileType="3" Output="gui_port.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_button.cpp" FileType="3" Output="gui_button.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_button.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_font.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_list.cpp" FileType="3" Output="gui_list.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_list.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_menu.cpp" FileType="3" Output="gui_menu.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_menu.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_page.cpp" FileType="3" Output="gui_page.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_page.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_sidebar.cpp" FileType="3" Output="gui_sidebar.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_sidebar.h" FileType="4" ro="0" bss="0" rw="0" />
                 <File RelativePath="..\..\..\component\gui\gui_text.cpp" FileType="3" Output="gui_text.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_text.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_textview.cpp" FileType="3" Output="gui_textview.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\gui\gui_textview.h" FileType="4" ro="0" bss="0" rw="0" />
+            </Filter>
+            <Filter Name="ir">
+                <File RelativePath="..\..\..\component\ir\ir_decoder.cpp" FileType="3" Output="ir_decoder.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\ir\ir_decoder.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\ir\ir_encoder.cpp" FileType="3" Output="ir_encoder.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\ir\ir_encoder.h" FileType="4" ro="0" bss="0" rw="0" />
+                <Filter Name="example">
+                    <File RelativePath="..\..\..\component\ir\example\1.ir_tx.cpp" FileType="3" Output="1.ir_tx.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\ir\example\2.ir_rx.cpp" FileType="3" Output="2.ir_rx.o" ro="0" bss="0" rw="0" />
+                </Filter>
+            </Filter>
+            <Filter Name="l gui">
+                <File RelativePath="..\..\..\component\l gui\dispChar.cpp" FileType="3" Output="dispChar.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\l gui\dispChar.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\l gui\FONTCharP.c" FileType="1" Output="FONTCharP.o" ro="0" bss="0" rw="0" />
+                <Filter Name="drive">
+                    <File RelativePath="..\..\..\component\l gui\drive\G_LCD_interface.cpp" FileType="3" Output="G_LCD_interface.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\drive\G_LCD_interface.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\drive\lTFT9225.cpp" FileType="3" Output="lTFT9225.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\drive\lTFT9225.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\drive\lTFT9225_test.cpp" FileType="3" Output="lTFT9225_test.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\drive\virtual_lcd.cpp" FileType="3" Output="virtual_lcd.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\drive\virtual_lcd.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\drive\VLcd_test.cpp" FileType="3" Output="VLcd_test.o" ro="0" bss="0" rw="0" />
+                </Filter>
+                <Filter Name="font">
+                    <File RelativePath="..\..\..\component\l gui\font\GUI_Font8_1.c" FileType="1" Output="GUI_Font8_1.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\l gui\font\lgui_font.h" FileType="4" ro="0" bss="0" rw="0" />
+                </Filter>
+                <File RelativePath="..\..\..\component\l gui\lGUI.cpp" FileType="3" Output="lGUI.o" ro="0" bss="0" rw="0" />
             </Filter>
             <Filter Name="linearRegression">
                 <File RelativePath="..\..\..\component\linearRegression\LinearRegression.cpp" FileType="3" Output="LinearRegression.o" ro="0" bss="0" rw="0" />
@@ -798,8 +858,61 @@
                 </Filter>
             </Filter>
             <Filter Name="menu">
-                <File RelativePath="..\..\..\component\menu\menu.cpp" FileType="3" Output="menu.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\menu\menu.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\menu\menuDef.h" FileType="4" ro="0" bss="0" rw="0" />
+                <Filter Name="t_menu example">
+                    <File RelativePath="..\..\..\component\menu\t_menu example\t_main.cpp" FileType="3" Output="t_main.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\menu\t_menu example\t_menu.cpp" FileType="3" Output="t_menu.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\menu\t_menu example\t_menu.h" FileType="4" ro="0" bss="0" rw="0" />
+                </Filter>
+            </Filter>
+            <Filter Name="modbus">
+                <Filter Name="libraries">
+                    <Filter Name="Modbus">
+                        <File RelativePath="..\..\..\component\modbus\libraries\Modbus\Modbus.cpp" FileType="3" Output="Modbus.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\modbus\libraries\Modbus\Modbus.h" FileType="4" ro="0" bss="0" rw="0" />
+                    </Filter>
+                    <Filter Name="ModbusIP">
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusIP\ModbusIP.cpp" FileType="3" Output="ModbusIP.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusIP\ModbusIP.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <Filter Name="examples">
+                            <File RelativePath="..\..\..\component\modbus\libraries\ModbusIP\examples\lamp.cpp" FileType="3" Output="lamp.o" ro="0" bss="0" rw="0" />
+                            <Filter Name="Lamp" />
+                            <Filter Name="Servo" />
+                            <Filter Name="Switch" />
+                            <Filter Name="TempSensor" />
+                        </Filter>
+                    </Filter>
+                    <Filter Name="ModbusIP_ENC28J60">
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusIP_ENC28J60\ModbusIP_ENC28J60.cpp" FileType="3" Output="ModbusIP_ENC28J60.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusIP_ENC28J60\ModbusIP_ENC28J60.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <Filter Name="examples">
+                            <Filter Name="Lamp" />
+                            <Filter Name="Servo" />
+                            <Filter Name="Switch" />
+                            <Filter Name="TempSensor" />
+                        </Filter>
+                    </Filter>
+                    <Filter Name="ModbusIP_ESP8266AT">
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusIP_ESP8266AT\ModbusIP_ESP8266AT.cpp" FileType="3" Output="ModbusIP_ESP8266AT.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusIP_ESP8266AT\ModbusIP_ESP8266AT.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <Filter Name="examples">
+                            <Filter Name="Lamp" />
+                            <Filter Name="Servo" />
+                            <Filter Name="Switch" />
+                            <Filter Name="TempSensor" />
+                        </Filter>
+                    </Filter>
+                    <Filter Name="ModbusSerial">
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusSerial\ModbusSerial.cpp" FileType="3" Output="ModbusSerial.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\modbus\libraries\ModbusSerial\ModbusSerial.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <Filter Name="examples">
+                            <File RelativePath="..\..\..\component\modbus\libraries\ModbusSerial\examples\lamp.cpp" FileType="3" Output="lamp.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\modbus\libraries\ModbusSerial\examples\PWMoutPut.cpp" FileType="3" Output="PWMoutPut.o" ro="0" bss="0" rw="0" />
+                            <Filter Name="Switch" />
+                            <Filter Name="TempSensor" />
+                        </Filter>
+                    </Filter>
+                </Filter>
             </Filter>
             <Filter Name="MPU6050">
                 <File RelativePath="..\..\..\component\MPU6050\FourAxle.cpp" FileType="3" Output="FourAxle.o" ro="0" bss="0" rw="0" />
@@ -814,62 +927,60 @@
                     <File RelativePath="..\..\..\component\MPU6050\example\quaternion_pithc_row_yaw.cpp" FileType="3" Output="quaternion_pithc_row_yaw.o" ro="0" bss="0" rw="0" />
                 </Filter>
             </Filter>
-            <Filter Name="network">
-                <File RelativePath="..\..\..\component\network\dhcp.cpp" FileType="3" Output="dhcp.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\dhcp.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\dns.cpp" FileType="3" Output="dns.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\dns.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\netconfig.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\socket.cpp" FileType="3" Output="socket.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\socket.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\tcp.cpp" FileType="3" Output="tcp.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\tcp.h" FileType="4" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\udp.cpp" FileType="3" Output="udp.o" ro="0" bss="0" rw="0" />
-                <File RelativePath="..\..\..\component\network\udp.h" FileType="4" ro="0" bss="0" rw="0" />
-                <Filter Name="MQTTClient">
-                    <File RelativePath="..\..\..\component\network\MQTTClient\FP.h" FileType="4" ro="0" bss="0" rw="0" />
-                    <File RelativePath="..\..\..\component\network\MQTTClient\MQTTClient.h" FileType="4" ro="0" bss="0" rw="0" />
-                    <File RelativePath="..\..\..\component\network\MQTTClient\MQTTLogging.h" FileType="4" ro="0" bss="0" rw="0" />
-                    <Filter Name="ebox">
-                        <File RelativePath="..\..\..\component\network\MQTTClient\ebox\Countdown.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTClient\ebox\EthIPStack.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTClient\ebox\WifiIPStack.h" FileType="4" ro="0" bss="0" rw="0" />
-                    </Filter>
+            <Filter Name="mqtt">
+                <Filter Name="examples">
+                    <File RelativePath="..\..\..\component\mqtt\examples\mqtt_basic.cpp" FileType="3" Output="mqtt_basic.o" ro="0" bss="0" rw="0" />
+                    <Filter Name="mqtt_auth" />
+                    <Filter Name="mqtt_basic" />
+                    <Filter Name="mqtt_esp8266" />
+                    <Filter Name="mqtt_large_message" />
+                    <Filter Name="mqtt_publish_in_callback" />
+                    <Filter Name="mqtt_reconnect_nonblocking" />
+                    <Filter Name="mqtt_stream" />
                 </Filter>
-                <Filter Name="MQTTPacket">
-                    <Filter Name="interface">
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\interface\mqtt_api.cpp" FileType="3" Output="mqtt_api.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\interface\mqtt_api.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\interface\transport.cpp" FileType="3" Output="transport.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\interface\transport.h" FileType="4" ro="0" bss="0" rw="0" />
-                    </Filter>
+                <Filter Name="src">
+                    <File RelativePath="..\..\..\component\mqtt\src\PubSubClient.cpp" FileType="3" Output="PubSubClient.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\mqtt\src\PubSubClient.h" FileType="4" ro="0" bss="0" rw="0" />
+                </Filter>
+                <Filter Name="tests">
                     <Filter Name="src">
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTConnect.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTConnectClient.c" FileType="1" Output="MQTTConnectClient.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTConnectServer.c" FileType="1" Output="MQTTConnectServer.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTDeserializePublish.c" FileType="1" Output="MQTTDeserializePublish.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTFormat.c" FileType="1" Output="MQTTFormat.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTFormat.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTPacket.c" FileType="1" Output="MQTTPacket.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTPacket.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTPublish.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTSerializePublish.c" FileType="1" Output="MQTTSerializePublish.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTSubscribe.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTSubscribeClient.c" FileType="1" Output="MQTTSubscribeClient.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTSubscribeServer.c" FileType="1" Output="MQTTSubscribeServer.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTUnsubscribe.h" FileType="4" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTUnsubscribeClient.c" FileType="1" Output="MQTTUnsubscribeClient.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\MQTTUnsubscribeServer.c" FileType="1" Output="MQTTUnsubscribeServer.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\src\StackTrace.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\mqtt\tests\src\connect_spec.cpp" FileType="3" Output="connect_spec.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\mqtt\tests\src\keepalive_spec.cpp" FileType="3" Output="keepalive_spec.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\mqtt\tests\src\publish_spec.cpp" FileType="3" Output="publish_spec.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\mqtt\tests\src\receive_spec.cpp" FileType="3" Output="receive_spec.o" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\mqtt\tests\src\subscribe_spec.cpp" FileType="3" Output="subscribe_spec.o" ro="0" bss="0" rw="0" />
+                        <Filter Name="lib">
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\Arduino.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\BDDTest.cpp" FileType="3" Output="BDDTest.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\BDDTest.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\Buffer.cpp" FileType="3" Output="Buffer.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\Buffer.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\Client.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\IPAddress.cpp" FileType="3" Output="IPAddress.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\IPAddress.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\Print.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\ShimClient.cpp" FileType="3" Output="ShimClient.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\ShimClient.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\Stream.cpp" FileType="3" Output="Stream.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\Stream.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\mqtt\tests\src\lib\trace.h" FileType="4" ro="0" bss="0" rw="0" />
+                        </Filter>
                     </Filter>
-                    <Filter Name="test">
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\test\null.c" FileType="1" Output="null.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\test\pub0sub1.c" FileType="1" Output="pub0sub1.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\test\pub0sub1_nb.c" FileType="1" Output="pub0sub1_nb.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\test\qos0pub.c" FileType="1" Output="qos0pub.o" ro="0" bss="0" rw="0" />
-                        <File RelativePath="..\..\..\component\network\MQTTPacket\test\test1.c" FileType="1" Output="test1.o" ro="0" bss="0" rw="0" />
-                    </Filter>
+                    <Filter Name="testcases" />
                 </Filter>
+            </Filter>
+            <Filter Name="soft_uart">
+                <File RelativePath="..\..\..\component\soft_uart\soft_uart.cpp" FileType="3" Output="soft_uart.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\soft_uart\soft_uart.h" FileType="4" ro="0" bss="0" rw="0" />
+                <Filter Name="example">
+                    <File RelativePath="..\..\..\component\soft_uart\example\1.send.cpp" FileType="3" Output="1.send.o" ro="0" bss="0" rw="0" />
+                </Filter>
+            </Filter>
+            <Filter Name="uGUI">
+                <File RelativePath="..\..\..\component\uGUI\ugui.c" FileType="1" Output="ugui.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\uGUI\ugui.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\uGUI\ugui_config.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\uGUI\U_GUI.h" FileType="4" ro="0" bss="0" rw="0" />
             </Filter>
             <Filter Name="usb_device_stack">
                 <Filter Name="USBAudio">
@@ -917,6 +1028,90 @@
                     <File RelativePath="..\..\..\component\usb_device_stack\USBSerial\USBCDC.h" FileType="4" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\usb_device_stack\USBSerial\USBSerial.cpp" FileType="3" Output="USBSerial.o" ro="0" bss="0" rw="0" />
                     <File RelativePath="..\..\..\component\usb_device_stack\USBSerial\USBSerial.h" FileType="4" ro="0" bss="0" rw="0" />
+                </Filter>
+            </Filter>
+            <Filter Name="WeeESP8266">
+                <File RelativePath="..\..\..\component\WeeESP8266\doxygen.h" FileType="4" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\WeeESP8266\ESP8266.cpp" FileType="3" Output="ESP8266.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\WeeESP8266\ESP8266.h" FileType="4" ro="0" bss="0" rw="0" />
+                <Filter Name="doc">
+                    <Filter Name="API-html" />
+                </Filter>
+                <Filter Name="examples">
+                    <File RelativePath="..\..\..\component\WeeESP8266\examples\HTTPGET.cpp" FileType="3" Output="HTTPGET.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\WeeESP8266\examples\TCPClientSingle.cpp" FileType="3" Output="TCPClientSingle.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\WeeESP8266\examples\TCPServer.cpp" FileType="3" Output="TCPServer.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\WeeESP8266\examples\UDPClientMultiple.cpp" FileType="3" Output="UDPClientMultiple.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\WeeESP8266\examples\UDPClientSigle.cpp" FileType="3" Output="UDPClientSigle.o" ro="0" bss="0" rw="0" />
+                    <Filter Name="ConnectWiFi" />
+                    <Filter Name="HTTPGET" />
+                    <Filter Name="TCPClientMultiple" />
+                    <Filter Name="TCPClientSingle" />
+                    <Filter Name="TCPClientSingleUNO" />
+                    <Filter Name="TCPServer" />
+                    <Filter Name="UDPClientMultiple" />
+                    <Filter Name="UDPClientSingle" />
+                </Filter>
+            </Filter>
+            <Filter Name="__discard">
+                <File RelativePath="..\..\..\component\__discard\w5500.cpp" FileType="3" Output="w5500.o" ro="0" bss="0" rw="0" />
+                <File RelativePath="..\..\..\component\__discard\w5500.h" FileType="4" ro="0" bss="0" rw="0" />
+                <Filter Name="network">
+                    <File RelativePath="..\..\..\component\__discard\network\dhcp.cpp" FileType="3" Output="dhcp.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\dhcp.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\dns.cpp" FileType="3" Output="dns.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\dns.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\netconfig.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\socket.cpp" FileType="3" Output="socket.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\socket.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\tcp.cpp" FileType="3" Output="tcp.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\tcp.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\udp.cpp" FileType="3" Output="udp.o" ro="0" bss="0" rw="0" />
+                    <File RelativePath="..\..\..\component\__discard\network\udp.h" FileType="4" ro="0" bss="0" rw="0" />
+                    <Filter Name="MQTTClient">
+                        <File RelativePath="..\..\..\component\__discard\network\MQTTClient\FP.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\__discard\network\MQTTClient\MQTTClient.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <File RelativePath="..\..\..\component\__discard\network\MQTTClient\MQTTLogging.h" FileType="4" ro="0" bss="0" rw="0" />
+                        <Filter Name="ebox">
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTClient\ebox\Countdown.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTClient\ebox\EthIPStack.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTClient\ebox\WifiIPStack.h" FileType="4" ro="0" bss="0" rw="0" />
+                        </Filter>
+                    </Filter>
+                    <Filter Name="MQTTPacket">
+                        <Filter Name="interface">
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\interface\mqtt_api.cpp" FileType="3" Output="mqtt_api.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\interface\mqtt_api.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\interface\transport.cpp" FileType="3" Output="transport.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\interface\transport.h" FileType="4" ro="0" bss="0" rw="0" />
+                        </Filter>
+                        <Filter Name="src">
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTConnect.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTConnectClient.c" FileType="1" Output="MQTTConnectClient.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTConnectServer.c" FileType="1" Output="MQTTConnectServer.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTDeserializePublish.c" FileType="1" Output="MQTTDeserializePublish.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTFormat.c" FileType="1" Output="MQTTFormat.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTFormat.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTPacket.c" FileType="1" Output="MQTTPacket.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTPacket.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTPublish.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTSerializePublish.c" FileType="1" Output="MQTTSerializePublish.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTSubscribe.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTSubscribeClient.c" FileType="1" Output="MQTTSubscribeClient.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTSubscribeServer.c" FileType="1" Output="MQTTSubscribeServer.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTUnsubscribe.h" FileType="4" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTUnsubscribeClient.c" FileType="1" Output="MQTTUnsubscribeClient.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\MQTTUnsubscribeServer.c" FileType="1" Output="MQTTUnsubscribeServer.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\src\StackTrace.h" FileType="4" ro="0" bss="0" rw="0" />
+                        </Filter>
+                        <Filter Name="test">
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\test\null.c" FileType="1" Output="null.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\test\pub0sub1.c" FileType="1" Output="pub0sub1.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\test\pub0sub1_nb.c" FileType="1" Output="pub0sub1_nb.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\test\qos0pub.c" FileType="1" Output="qos0pub.o" ro="0" bss="0" rw="0" />
+                            <File RelativePath="..\..\..\component\__discard\network\MQTTPacket\test\test1.c" FileType="1" Output="test1.o" ro="0" bss="0" rw="0" />
+                        </Filter>
+                    </Filter>
                 </Filter>
             </Filter>
         </Filter>

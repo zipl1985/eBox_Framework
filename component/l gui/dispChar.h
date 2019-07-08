@@ -22,31 +22,47 @@
 #include "lgui_font.h"
 #include "G_LCD_interface.h"
 
-typedef struct {
-  const GUI_FONT   * pAFont;
-	int16_t	LBorder;								// ±ß½ç
-  int16_t DispPosX, DispPosY;
-  int16_t DrawPosX, DrawPosY;
-  int16_t TextMode, TextAlign;
-}TextInfo;
+typedef struct
+{
+		int16_t x;
+		int16_t y;
+		int16_t w;
+		int16_t h;
+		E_COLOR fc;
+    E_COLOR bc;
+    uint8_t align;
+		DispMode_e mode;
+}WND_S;
+
+typedef struct
+{
+    WND_S   disp;
+	  char *str;
+    const GUI_FONT *pAFont;
+		int16_t DispPosX, DispPosY;
+}TEXT_S;
 
 class TEXTAPI
 {
 public: 
-		TEXTAPI(GAPI *pG,TextInfo *pT);
+		TEXTAPI(GAPI *pG,TEXT_S *pT);
 		
     void putChar(char c);
 		void putCharS(char *s , uint16_t num);
 		void putString(uint16_t x,uint16_t y,const char *str);
 		void printf(uint16_t x,uint16_t y,const char *fmt, ...);
+    void putText(TEXT_S *t);
 protected :
-    TextInfo *_context;
-		GAPI *_put;
+    TEXT_S *_context;
+		GAPI *_dev;
+		virtual void 		drawBitmap(int16_t x, int16_t y,const uint8_t *bitmap, int16_t w, int16_t h, E_COLOR color);
+		virtual void 		drawBitmap(int16_t x, int16_t y,const uint8_t *bitmap, int16_t w, int16_t h, E_COLOR bcolor,E_COLOR fcolor);
 private	:
 		void _dispChar(char c);
 		void _dispCharP(char c);
 		void _dispNextLine();
-		uint16_t	_getYAdjust();
+		int16_t	_getYAdjust(uint16_t h=1);
+		int16_t	_getXAdjust(uint16_t stringWidth);
 };
 
 #endif

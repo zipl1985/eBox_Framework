@@ -13,7 +13,7 @@
 #define  VLCD_DEBUG(...)
 #endif
 
-VLcd::VLcd(Print *p)
+VLcd::VLcd(Print *p,int16_t w,int16_t h):GAPI(w,h)
 {
 	_p = p;
 };

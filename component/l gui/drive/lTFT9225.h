@@ -25,6 +25,7 @@
 #include "parallel_gpio.h"
 #include "G_LCD_interface.h"
 
+
 #define X_MAX_PIXEL	        176
 #define Y_MAX_PIXEL	        220
 
@@ -47,7 +48,7 @@
 class Lcd : public GAPI
 {
 public:
-  Lcd(Gpio *cs,Gpio *rst, Gpio *rd, Gpio *rs, Gpio *wr, ParallelGpio *db)
+  Lcd(Gpio *cs,Gpio *rst, Gpio *rd, Gpio *rs, Gpio *wr, ParallelGpio *db,int16_t width,int16_t height):GAPI(width,height)
   {
     _cs = cs;
     _rst = rst;
@@ -64,12 +65,11 @@ public:
 
   void set_xy(int16_t x, int16_t y);
 
-  virtual void    draw_pixel(int16_t x, int16_t y, uint32_t color);
-  virtual void    draw_v_line(int16_t x0, int16_t y0, int16_t y1, uint32_t color);
-  virtual void    draw_h_line(int16_t x0, int16_t y0, int16_t x1, uint32_t color);
-  virtual void    fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, uint32_t color);
-	virtual void    fill_rect(int16_t x, int16_t y, int16_t x1, int16_t y1, uint32_t *color,uint16_t size);
-  virtual void    fill_screen(uint32_t color);
+  virtual void    draw_pixel(int16_t x, int16_t y, E_COLOR color);
+	virtual void    draw_h_line(int16_t x, int16_t y, int16_t len, E_COLOR color);
+  virtual void    draw_v_line(int16_t x, int16_t y, int16_t len, E_COLOR color);
+  virtual void    fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, E_COLOR color);
+  virtual void    fill_screen(E_COLOR color);
 
 private:
   Gpio *_cs;		// Ƭѡ

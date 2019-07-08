@@ -20,7 +20,7 @@ Purpose     : Implementation of Proportional fonts
 #include <stddef.h>           /* needed for definition of NULL */
 //#include "GUI_Private.h"
 #include "lgui_font.h"
- 
+
 /*********************************************************************
 *
 *       Static code

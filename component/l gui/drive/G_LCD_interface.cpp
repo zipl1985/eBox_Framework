@@ -50,20 +50,20 @@ return (uint16_t)(  ((color & 0xF80000) >> 8) |
 }
 
 
-void GAPI::draw_v_line(int16_t x, int16_t y, int16_t len, uint32_t color)
+void GAPI::draw_v_line(int16_t x, int16_t y, int16_t len, E_COLOR color)
 {
 //		if(_screen.height !=0) len = _screen.height-y > len ? len : _screen.height-y;
     while(len--)
         draw_pixel(x, y++, color);
 }
-void GAPI::draw_h_line(int16_t x, int16_t y, int16_t len, uint32_t color)
+void GAPI::draw_h_line(int16_t x, int16_t y, int16_t len, E_COLOR color)
 {
 //		if(_screen.width !=0) len = _screen.width-x > len ? len : _screen.width-x;
     while(len--)
         draw_pixel(x++, y, color);
 }
 
-void GAPI::fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, uint32_t color)
+void GAPI::fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, E_COLOR color)
 {
 //		if(_screen.height !=0) height = _screen.height-y > height ? height : _screen.height-y;
 //		if(_screen.width !=0) width = _screen.width-x > width ? width : _screen.width-x;
@@ -75,7 +75,7 @@ void GAPI::fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, uint32
     }
 }
 
-void GAPI::draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t color)
+void GAPI::draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, E_COLOR color)
 {
     int dx,             // difference in x's
         dy,             // difference in y's
@@ -173,7 +173,7 @@ void GAPI::draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t co
 
 
 
-void GAPI::draw_circle(int16_t x, int16_t y, int16_t r, uint32_t color)
+void GAPI::draw_circle(int16_t x, int16_t y, int16_t r, E_COLOR color)
 {
     unsigned short  a, b;
     int c;
@@ -212,7 +212,7 @@ void GAPI::draw_circle(int16_t x, int16_t y, int16_t r, uint32_t color)
     }
 }
 
-void GAPI::fill_screen(uint32_t color)
+void GAPI::fill_screen(E_COLOR color)
 {
 	fill_rect(0,0,_width,_height,color);
 }
@@ -221,43 +221,4 @@ void GAPI::flush()
 {
 }
 
-void GAPI::drawBitmap(int16_t x, int16_t y,
-                     const uint8_t *bitmap, int16_t w, int16_t h, uint32_t color)
-{
 
-    int16_t i, j, byteWidth = (w + 7) / 8;
-    uint8_t byte;
-
-    for(j = 0; j < h; j++)
-    {
-        for(i = 0; i < w; i++)
-        {
-            if(i & 7) byte <<= 1;
-            else      byte   = *(bitmap + j * byteWidth + i / 8);
-            if(byte & 0x80) draw_pixel(x + i, y + j, color);
-        }
-    }
-}
-
-void GAPI::drawBitmap(int16_t x, int16_t y,
-                     const uint8_t *bitmap, int16_t w, int16_t h, uint32_t bcolor,uint32_t fcolor)
-{
-
-    int16_t i, j, byteWidth = (w + 7) / 8;
-    uint8_t byte;
-
-    for(j = 0; j < h; j++)
-    {
-        for(i = 0; i < w; i++)
-        {
-            if(i & 7) byte <<= 1;
-            else      byte   = *(bitmap + j * byteWidth + i / 8);
-            
-						if(byte & 0x80){
-							draw_pixel(x + i, y + j, fcolor);
-						}else{
-							draw_pixel(x + i, y + j, bcolor);
-						}
-        }
-    }
-}

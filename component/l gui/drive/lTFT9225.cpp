@@ -241,7 +241,7 @@ void Lcd::set_xy(int16_t x, int16_t y)
 
 
 
-void Lcd::draw_pixel(int16_t x, int16_t y, uint32_t color)
+void Lcd::draw_pixel(int16_t x, int16_t y, E_COLOR color)
 {
   if (x < 0 || x > _width) return;
   if (y < 0 || y > _height) return;
@@ -252,9 +252,10 @@ void Lcd::draw_pixel(int16_t x, int16_t y, uint32_t color)
   _writeDate(color);
 }
 
-void  Lcd::fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, uint32_t color){
+void  Lcd::fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, E_COLOR color){
 	_setRegion(x,y,width,height);
-	uint32_t size = width*height;
+	set_xy(x,y);
+	uint32_t size = (width+1)*(height+1);
 	_setIndexReg(LCD_REG_22_MWrte);
 	for(uint32_t i=0;i<size;i++)
 	{		_writeDate(color);
@@ -262,44 +263,34 @@ void  Lcd::fill_rect(int16_t x, int16_t y, int16_t width, int16_t height, uint32
 	_setRegion(0,0,_width,_height);
 }
 
-void  Lcd::fill_rect(int16_t x, int16_t y, int16_t x1, int16_t y1, uint32_t *color,uint16_t size){
-	_setRegion(x,y,(x1-x),(y1-y));
-	_setIndexReg(LCD_REG_22_MWrte);
-	for(uint32_t i=0;i<size;i++)
-	{		_writeDate(*color++);
-	}
-}
-
-void Lcd::fill_screen(uint32_t color)
+void Lcd::fill_screen(E_COLOR color)
 {
   clear(color);
 }
 
-void Lcd::draw_v_line(int16_t x0, int16_t y0, int16_t y1, uint32_t color){
-	  uint16_t counter = 0;
-  _writeCommand(LCD_REG_03_EnMode, REG03_V);
-  
+void Lcd::draw_v_line(int16_t x, int16_t y, int16_t len, E_COLOR color){
+  _writeCommand(LCD_REG_03_EnMode, REG03_V);  
   /* Set Cursor */
-  set_xy(x0, y0);
+  set_xy(x, y);
   
   /* Prepare to write GRAM */
   _setIndexReg(LCD_REG_22_MWrte);
 
   /* Fill a complete vertical line */
-  for(counter = y0; counter < y1; counter++)
+  for( uint16_t counter = 0; counter <= len; counter++)
   {
     _writeDate(color);
   }
   _writeCommand(LCD_REG_03_EnMode, REG03_H);  
 }
 
-void Lcd::draw_h_line(int16_t x0, int16_t y0, int16_t x1, uint32_t color){
+void Lcd::draw_h_line(int16_t x, int16_t y, int16_t len, E_COLOR color){
 	  
-  set_xy(x0, y0);  
+  set_xy(x, y);  
   /* Prepare to write GRAM */
   _setIndexReg(LCD_REG_22_MWrte);
   /* Fill a complete vertical line */
-  for(uint16_t counter = x0; counter < x1; counter++)
+  for(uint16_t counter = 0; counter <= len; counter++)
   {	
     _writeDate(color);
   }

@@ -21,7 +21,7 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 
 #include "ebox_core.h"
-#include "font.h"
+#include "G_lcd_interface.h"
 
 #define X_MAX_PIXEL	        128
 #define Y_MAX_PIXEL	        160
@@ -51,15 +51,11 @@ typedef enum
 #define GRAY0   0xEF7D   	    //灰色0 3165 00110 001011 00101
 #define GRAY1   0x8410      	//灰色1      00000 000000 00000
 #define GRAY2   0x4208      	//灰色2  1111111111011111
-class Lcd : public Vhmi
+class Lcd : public GAPI
 {
+
 public:
-    uint8_t MADCTL;
-    int16_t front_color;
-    int16_t back_color;
-    TEXT_MODE_TYPE text_mode;
-public:
-    Lcd(Gpio *cs, Gpio *led, Gpio *rs, Gpio *rst, Spi *spi)
+		Lcd(Gpio *cs, Gpio *led, Gpio *rs, Gpio *rst, Spi *spi,int16_t width,int16_t height):GAPI(width,height)
     {
         this->cs = cs;
         this->led = led;
@@ -78,25 +74,14 @@ public:
     void set_xy(int16_t x, int16_t y);
 
 
-    virtual void draw_pixel(int16_t x, int16_t y, uint32_t color);
-    virtual void draw_h_line(int16_t x0, int16_t y0, int16_t x1, uint32_t color);
-    virtual void draw_v_line(int16_t x0, int16_t y0, int16_t y1, uint32_t color);
-    virtual void draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t color);
-    virtual void fill_rect  (int16_t x0, int16_t y0,  int16_t x1, int16_t y1, uint32_t color);
+    virtual void draw_pixel(int16_t x, int16_t y, E_COLOR color);
+    virtual void draw_h_line(int16_t x0, int16_t y0, int16_t x1, E_COLOR color);
+    virtual void draw_v_line(int16_t x0, int16_t y0, int16_t y1, E_COLOR color);
+    virtual void draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, E_COLOR color);
+    virtual void fill_rect  (int16_t x0, int16_t y0,  int16_t x1, int16_t y1, E_COLOR color);
     virtual void fill_rect  (int16_t x0, int16_t y0,  int16_t x1, int16_t y1, uint16_t *bitmap);
-    virtual void fill_screen(uint32_t color);
-    virtual void draw_circle(int16_t x, int16_t y, int16_t r, uint32_t color);
-
-
-
-    int16_t read_point(int16_t x, int16_t y);
-    void h_disp_char8x16(int16_t x, int16_t y, uint8_t ch);
-    void disp_char8x16(int16_t x, int16_t y, uint8_t ch);
-    void printf(int16_t x, int16_t y, const char *fmt, ...);
-    void draw_font_gbk16(int16_t x, int16_t y, uint8_t *s);
-
-    void draw_bitmap(const unsigned char *p); //显示40*40 QQ图片
-
+    virtual void fill_screen(E_COLOR color);
+    virtual void draw_circle(int16_t x, int16_t y, int16_t r, E_COLOR color);
 
 private:
     Gpio *cs;

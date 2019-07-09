@@ -28,12 +28,12 @@
 
 #define	HARDWARE	"ebox_spark£¬STM32F103C8T6"
 
-extern Lcd lcd;
-extern Graphic gpu;
-extern EventGpio btn;
-extern EventManager manager;
+//extern Lcd lcd;
+//extern Graphic gpu;
+//extern EventGpio btn;
+//extern EventManager manager;
 
-extern W5500Class w5500;
+//extern W5500Class w5500;
 
 #define UART uart1
 #define LED1 PB8

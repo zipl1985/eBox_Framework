@@ -247,7 +247,7 @@ void COMPONENT::hide(){
 
 WINDOW::WINDOW(GUI *g){
 	_gui = g;	
-	_title.align = GUI_TA_RIGHT;
+	_title.align = AlignMode_Left;
 	_title.height = 20;
 	_title.bc = C_BLUE;
 	_title.fc = C_WHITE;

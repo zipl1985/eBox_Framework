@@ -44,31 +44,37 @@ void GUI::setDispMode(DispMode_e mode){
 void GUI::fillScreen( E_COLOR c ){
 	_pDev->fill_rect(_g.x,_g.y,_g.w,_g.h,c); 
 }
+
+void GUI::fillFrameEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c){
+	_pDev->fill_rect(xs,ys,_getXend(xe)-xs,_getYend(ye)-ys,c);
+}
+
 void GUI::fillFrame(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, E_COLOR c ){
 	_pDev->fill_rect(x1,y1,_getXend(x1+width)-x1,_getYend(y1+height)-y1,c);
 }
-void GUI::fillRoundFrame( uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint16_t r, E_COLOR c ){
-    int16_t  x, y, xd;
+
+void GUI::fillRoundFrameEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, uint16_t r, E_COLOR c){
+	  int16_t  x, y, xd;
 
     if ( r <= 0 ) return;
 
     xd = 3 - (r << 1);
     x = 0;
     y = r;
-
-    _pDev->fill_rect(x1 + r, y1, width - r-r, height, c);
-
+		// 先画一个窄2r的矩形
+		fillFrameEx(xs+r,ys,xe-r,ye,c);
+		// 在两侧通过长短不一的线段实现圆角
     while ( x <= y )
     {
         if( y > 0 )
         {
-					_pDev->draw_v_line(x1+width+x-r,y1-y+r,height-(r<<1)+(y<<1),c);
-					_pDev->draw_v_line(x1-x+r,y1-y+r,height-(r<<1)+(y<<1),c);
+					_pDev->draw_v_line(xe+x-r,ys-y+r,ye-ys-(r<<1)+(y<<1),c);
+					_pDev->draw_v_line(xs-x+r,ys-y+r,ye-ys-(r<<1)+(y<<1),c);
         }
         if( x > 0 )
         {
-					_pDev->draw_v_line(x1 - y + r, y1 - x + r,height+((x-r)<<1),c);
-					_pDev->draw_v_line(x1+width + y - r, y1 - x + r,height+((x-r)<<1),c);
+					_pDev->draw_v_line(xs - y + r, ys - x + r,ye-ys+((x-r)<<1),c);
+					_pDev->draw_v_line(xe + y - r, ys - x + r,ye-ys+((x-r)<<1),c);
         }
         if ( xd < 0 )
         {
@@ -82,49 +88,54 @@ void GUI::fillRoundFrame( uint16_t x1, uint16_t y1, uint16_t width, uint16_t hei
         x++;
     }
 }
-void GUI::drawMesh(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height,uint16_t gap, E_COLOR c ){
-    int16_t n = x1+width , m = y1+height ;
+void GUI::fillRoundFrame( uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint16_t r, E_COLOR c ){
+	fillRoundFrameEx(x1,y1,x1+width,y1+height,r,c);
+}
+void GUI::drawMesh(uint16_t x, uint16_t y, uint16_t width, uint16_t height,uint16_t gap, E_COLOR c ){
+		drawMeshEx(x,y,x+width,y+height,gap,c);
+}
 
-    for(; y1 <= m; y1 += gap )
+void GUI::drawMeshEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye,uint16_t gap, E_COLOR c ){
+		uint16_t x;
+    for(; ys <= ye; ys += gap )
     {
-        for(; x1 <= n; x1 += gap )
+        for(x=xs; x <= xe; x += gap )
         {
-           _pDev->draw_pixel(x1, y1, c);
+           _pDev->draw_pixel(x, ys, c);
         }
     }
 }
+
+
+void GUI::drawFrameEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c ){
+	drawFrame(xs,ys,xe-xs,ye-ys,c);
+}
+
 void GUI::drawFrame(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, E_COLOR c ){
   _pDev->draw_h_line(x1,y1,width,c);
   _pDev->draw_h_line(x1,y1+height,width,c);
   _pDev->draw_v_line(x1,y1,height,c);
   _pDev->draw_v_line(x1+width,y1,height,c);
 }
-void GUI::drawRoundFrame( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t r, E_COLOR c ){
-    int16_t n;
-    if ( x2 < x1 )
-    {
-        n = x2;
-        x2 = x1;
-        x1 = n;
-    }
-    if ( y2 < y1 )
-    {
-        n = y2;
-        y2 = y1;
-        y1 = n;
-    }
 
-    if ( r > x2 ) return;
-    if ( r > y2 ) return;
+void GUI::drawRoundFrameEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, uint16_t r, E_COLOR c ){
+    if ( xe < xs )	swap(&xe,&xs);
+    if ( ye < ys )	swap(&ye,&ys);
+		drawRoundFrame(xs,ys,xe-xs,ye-ys,r,c);
+}
 
-    drawLine(x1 + r, y1, x2 - r, y1, c);
-    drawLine(x1 + r, y2, x2 - r, y2, c);
-    drawLine(x1, y1 + r, x1, y2 - r, c);
-    drawLine(x2, y1 + r, x2, y2 - r, c);
-    drawArc(x1 + r, y1 + r, r, 0x0C, c);
-    drawArc(x2 - r, y1 + r, r, 0x03, c);
-    drawArc(x1 + r, y2 - r, r, 0x30, c);
-    drawArc(x2 - r, y2 - r, r, 0xC0, c);
+void GUI::drawRoundFrame( uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t r, E_COLOR c ){
+		int16_t d = r<<1 ,xe = x + w, ye = y+h;
+
+		_pDev->draw_h_line(x+r,y,w-d,c);		// 上
+		_pDev->draw_h_line(x+r,y+h,w-d,c);	// 下
+		_pDev->draw_v_line(x,y+r,h-d,c);		// 左
+		_pDev->draw_v_line(x+w,y+r,h-d,c);	// 右
+
+		drawArc(x + r, y + r, r, 0x0C, c);		// 左上
+		drawArc(xe - r, y + r, r, 0x03, c);		// 右上
+		drawArc(x + r, ye - r, r, 0x30, c);		// 做下
+		drawArc(xe - r, ye - r, r, 0xC0, c);	// 右下
 }
 void GUI::drawPixel( uint16_t x, uint16_t y, E_COLOR c ){
 	if(x>_g.w || y > _g.h) return;
@@ -212,8 +223,7 @@ void GUI::drawArc( uint16_t x0, uint16_t y0, uint16_t r, uint8_t s, E_COLOR c ){
     }
 }
 void GUI::drawLine( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, E_COLOR c ){
-
-	if(y2==y1) _pDev->draw_h_line(x1,y1,_getXend(x2)-x1,c);
+		if(y2==y1) _pDev->draw_h_line(x1,y1,_getXend(x2)-x1,c);
 		else if(x2==x1) _pDev->draw_v_line(x1,y1,_getYend(y2)-y1,c);
 		else _drawLine(x1,y1,x2,y2,c);
 }

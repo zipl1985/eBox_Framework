@@ -3,6 +3,8 @@
   * @file    Graphic.h
   * @author  cat_li
   * @brief   基础图形
+	*		2019.7.10		添加图形Ex接口：Ex 通过起始坐标和结束坐标确定位置和大小
+	*								不带Ex通过左上确定位置，宽，高确定大小								
   ******************************************************************************
   * @attention
   *
@@ -31,39 +33,34 @@ public:
 	void begin();
 	void clear(){fillScreen(_g.bc);}
 	void setDispMode(DispMode_e mode);
-  // 填充图形 
+	
+  /*  填充图形	*/ 
   void fillScreen( E_COLOR c );
-  // 填充矩形-坐标(x,y),尺寸(width,height),颜色(c)
-  void fillFrame( uint16_t x, uint16_t y, uint16_t width, uint16_t height, E_COLOR c );
-  // 填充圆角矩形-坐标(x,y),尺寸(width,height),圆弧半径(r),颜色(c)
-  void fillRoundFrame( uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t r, E_COLOR c );
-  // 填充圆形-坐标(x,y),半径(r),颜色(c)
-  void fillCircle( uint16_t x, uint16_t y, uint16_t r, E_COLOR c );
+  void fillFrame( uint16_t x, uint16_t y, uint16_t width, uint16_t height, E_COLOR c );		// 填充矩形-坐标(x,y),尺寸(width,height),颜色(c)
+	void fillFrameEx( uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c );  		// 填充矩形-坐标(xs,ys,xe,ye),颜色(c)
+  void fillRoundFrame( uint16_t x, uint16_t y, uint16_t width, uint16_t height,uint16_t r, E_COLOR c );	// 填充圆角矩形-坐标(x,y),尺寸(width,height),圆弧半径(r),颜色(c)	
+	void fillRoundFrameEx( uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, uint16_t r, E_COLOR c );   // 填充圆角矩形-坐标(xs,ys,xe,ye),颜色(c)
+  void fillCircle( uint16_t x, uint16_t y, uint16_t r, E_COLOR c );			// 填充圆形-坐标(x,y),半径(r),颜色(c)
   
-  /* 画图 */
-  // 画网格-坐标(x,y),尺寸(width,height),间距(gap)颜色(c)
-  void drawMesh(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height,uint16_t gap, E_COLOR c );
-  // 画矩形-坐标(x,y),尺寸(width,height),颜色(c)
-  void drawFrame(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, E_COLOR c );
-  // 画圆角矩形-坐标(x,y),尺寸(width,height),圆弧半径(r),颜色(c)
-  void drawRoundFrame( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t r, E_COLOR c );
-  // 描点-坐标(x,y),颜色(c)
-  void drawPixel( uint16_t x0, uint16_t y0, E_COLOR c );
-  // 画圆-坐标(x,y),半径(r),颜色(c)
-  void drawCircle( uint16_t x0, uint16_t y0, uint16_t r, E_COLOR c );
-  // 画弧线
-  void drawArc( uint16_t x0, uint16_t y0, uint16_t r, uint8_t s, E_COLOR c );
-  // 画线-起点(xs,ys),终点(xe,ye)
-  void drawLine( uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c );
+  /* 	画图 	*/  
+  void drawMesh(uint16_t x, uint16_t y, uint16_t width, uint16_t height,uint16_t gap, E_COLOR c );	// 画网格-坐标(x,y),尺寸(width,height),间距(gap)颜色(c)
+	void drawMeshEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye,uint16_t gap, E_COLOR c );			// 画网格-坐标(xs,ys,xe,ye),间距(gap)颜色(c)
+  void drawFrame(uint16_t x, uint16_t y, uint16_t width, uint16_t height, E_COLOR c );		// 画矩形-坐标(x,y),尺寸(width,height),颜色(c)
+  void drawFrameEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c );  			// 画矩形-坐标(xs,ys,xe,ye),颜色(c)
+  void drawRoundFrame( uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t r, E_COLOR c );			// 画圆角矩形-坐标(x,y),尺寸(width,height),圆弧半径(r),颜色(c)	
+	void drawRoundFrameEx(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, uint16_t r, E_COLOR c );		// 画圆角矩形-坐标(xs,ys,xe,ye),圆弧半径(r),颜色(c)  
+  void drawPixel( uint16_t x0, uint16_t y0, E_COLOR c );														// 描点-坐标(x,y),颜色(c)  
+  void drawCircle( uint16_t x0, uint16_t y0, uint16_t r, E_COLOR c );								// 画圆-坐标(x,y),半径(r),颜色(c)  
+  void drawArc( uint16_t x0, uint16_t y0, uint16_t r, uint8_t s, E_COLOR c ); 			// 画弧线 
+  void drawLine( uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c );		// 画线-起点(xs,ys),终点(xe,ye)
 
 	virtual void		drawBitmap(int16_t x, int16_t y,const uint8_t *bitmap, int16_t w, int16_t h, E_COLOR bcolor,E_COLOR fcolor);
 
-	
+	// 获取参数
 	E_COLOR		getBColor(){return _g.bc;}
 	E_COLOR  	getfColor(){return _g.fc;}
 	int16_t		getWidth(){return  _g.w;}
-	int16_t		getHeight(){return _g.h;}
-	
+	int16_t		getHeight(){return _g.h;}	
 	const GUI_FONT * getFont(){return _t.pAFont;}
 	
 	void 	putText(TEXT_S *t,char *str,uint8_t align);
@@ -71,9 +68,9 @@ private	:
 	AREA_S 	_g;			// 显示区域信息
 	TEXT_S  _t;			// 显示文本信息
 
-	void _drawLine(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c);
-	int16_t _getXend(int16_t xe){ return (xe>_g.w ? _g.w : xe);}
-	int16_t _getYend(int16_t ye){ return (ye>_g.h ? _g.h : ye);}
+	void _drawLine(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c);		// 画任意角度直线
+	int16_t _getXend(int16_t xe){ return (xe>_g.w ? _g.w : xe);}											// 防止x出边界
+	int16_t _getYend(int16_t ye){ return (ye>_g.h ? _g.h : ye);}											// 防止y出边界
 	
 	int16_t	_getYAdjust(uint8_t align,uint16_t h=1);
 	int16_t	_getXAdjust(uint8_t align,uint16_t stringWidth);

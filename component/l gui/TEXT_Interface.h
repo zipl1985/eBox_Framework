@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    TEXT_Interface.h
   * @author  cat_li
-  * @brief   ÎÄ±¾Êä³ö½Ó¿Ú,ÓÃÀ´ÏòÖ¸¶¨Éè±¸Êä³öÎÄ±¾
+  * @brief   æ–‡æœ¬è¾“å‡ºæ¥å£,ç”¨æ¥å‘æŒ‡å®šè®¾å¤‡è¾“å‡ºæ–‡æœ¬
   ******************************************************************************
   * @attention
   *
@@ -22,60 +22,71 @@
 #include "lgui_font.h"
 #include "G_LCD_interface.h"
 
-// ÏÔÊ¾ÇøÓò²ÎÊı
+extern const GUI_UC_ENC_APILIST ENC_API_TableNone;	
+extern const GUI_UC_ENC_APILIST ENC_API_TableUC;
+
+
+// æ˜¾ç¤ºåŒºåŸŸå‚æ•°
 typedef struct
 {
-		int16_t x;				// ×ø±ê
+		int16_t x;				// åæ ‡
 		int16_t y;
-		int16_t w;				// ³ß´ç
+		int16_t w;				// å°ºå¯¸
 		int16_t h;
-		E_COLOR fc;				// ÑÕÉ«
+		E_COLOR fc;				// é¢œè‰²
     E_COLOR bc;
-		DispMode_e mode;	// ÏÔÊ¾Ä£Ê½
-}AREA_S;
+		DispMode_e mode;	// æ˜¾ç¤ºæ¨¡å¼
+}WINDOW_S;
 
 typedef struct
 {
-    AREA_S   disp;
+    WINDOW_S   disp;
     const 	 GUI_FONT 	*pAFont;
+		const 	 GUI_UC_ENC_APILIST * pUC_API;    /* Unicode encoding API */
 		int16_t  DispPosX, DispPosY;
 }TEXT_S;
 
 typedef struct
 {
-    AREA_S    disp;
-	  char 		  *str;
-		uint8_t   align;		// ¶ÔÆëÄ£Ê½
-    const 	  GUI_FONT 	  *pAFont;
+    WINDOW_S    disp;
+		const 	  GUI_FONT 	  *pAFont;
 		int16_t   DispPosX,   DispPosY;
+		uint8_t   align;		// å¯¹é½æ¨¡å¼
+		char 		  *str;
 }TEXT_SS;
+
+typedef enum{
+	none,
+	uncode
+}CODE;
 
 class TEXTAPI
 {
 public: 
 		TEXTAPI(GAPI *pG,TEXT_S *pT);
 	
-    void putChar(const char c);
+    void putChar(const uint16_t c);
 		void putCharS(const char *s , uint16_t num);
 		void putString(uint16_t x,uint16_t y,const char *str);
-		// ÊôĞÔÉèÖÃ
-		void selectFont(const GUI_FONT *f){_pT->pAFont = f;}
+		// å±æ€§è®¾ç½®
+		void selectFont(const GUI_FONT *f, const GUI_UC_ENC_APILIST * pUC_API = &ENC_API_TableNone);
+		const GUI_FONT * getFont(){return _pT->pAFont;}
 		void setTextBackColor(E_COLOR c){_pT->disp.bc = c;}
 		void setTextForeColor(E_COLOR c){_pT->disp.fc = c;}
 		void setTextMode(DispMode_e mode){_pT->disp.mode = mode;}
-		
-//		void putText(TEXT_S *t,char 		  *str);
-protected :
-    TEXT_S *_pT;			// Ö¸ÏòÎÄ±¾²ÎÊı
-		GAPI   *_pDev;		// Ö¸ÏòÊä³öÉè±¸
 
-		void _dispChar(char c);
+protected :
+    TEXT_S *_pT;			// æŒ‡å‘æ–‡æœ¬å‚æ•°
+		GAPI   *_pDev;		// æŒ‡å‘è¾“å‡ºè®¾å¤‡
+
+		void _dispChar(uint16_t c);
 		virtual void 		_drawBitmap(int16_t x, int16_t y,const uint8_t *bitmap, int16_t w, int16_t h, E_COLOR color);
 		virtual void 		_drawBitmap(int16_t x, int16_t y,const uint8_t *bitmap, int16_t w, int16_t h, E_COLOR bcolor,E_COLOR fcolor);
 private	:
 
-		void _dispCharP(char c);
+		void _dispCharP(uint16_t c);
 		void _dispNextLine();
+		uint16_t __GetCharCodeInc(const char  ** ps);
 };
 
 #endif

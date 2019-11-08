@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    TEXT_Interface.cpp
   * @author  cat_li
-  * @brief   ÎÄ±¾Êä³ö½Ó¿Ú,ÓÃÀ´ÏòÖ¸¶¨Éè±¸Êä³öÎÄ±¾
+  * @brief   æ–‡æœ¬è¾“å‡ºæŽ¥å£,ç”¨æ¥å‘æŒ‡å®šè®¾å¤‡è¾“å‡ºæ–‡æœ¬
   ******************************************************************************
   * @attention
   *
@@ -33,11 +33,10 @@ TEXTAPI::TEXTAPI(GAPI *pG,TEXT_S *pT)
 {
 	_pDev = pG;
 	_pT = pT;
-	// Èç¹ûÃ»ÓÐ×ÖÌåÐÅÏ¢£¬Ôò¼Ù¶¨ÎÄ±¾²ÎÊýÃ»ÓÐ³õÊ¼»¯
+	// å¦‚æžœæ²¡æœ‰å­—ä½“ä¿¡æ¯ï¼Œåˆ™å‡å®šæ–‡æœ¬å‚æ•°æ²¡æœ‰åˆå§‹åŒ–
 	if(pT->pAFont == NULL){
 		_pT->pAFont = &GUI_FontGUI_Font8_1;
-		_pT->disp.w = _pDev->getWidth() -4;
-		_pT->disp.h = _pDev->getHeight() -4;
+		_pT->pUC_API = &ENC_API_TableNone;
 		_pT->disp.bc = C_WHITE;
 		_pT->disp.fc = C_BLACK;
 		_pT->disp.mode = DispMode_Normal;
@@ -45,28 +44,52 @@ TEXTAPI::TEXTAPI(GAPI *pG,TEXT_S *pT)
 	if(_pT->disp.x == 0 || _pT->disp.y == 0){
 		_pT->disp.x = 2;
 		_pT->disp.y = 2;
+		_pT->disp.w = _pDev->getWidth() -4;
+		_pT->disp.h = _pDev->getHeight() -4;
 	}
 }
 
-void TEXTAPI::_dispChar(char c) {
+void TEXTAPI::selectFont(const GUI_FONT *f,const GUI_UC_ENC_APILIST * pUC_API){
+	_pT->pAFont = f;
+	_pT->pUC_API = pUC_API;
+}
+
+void TEXTAPI::_dispChar(uint16_t c) {
 	if( _pT->pAFont->pfGetFontInfo() == GUI_FONTINFO_FLAG_PROP) _dispCharP(c);
 }
 
-void TEXTAPI::putChar(char c)
+void TEXTAPI::putChar(uint16_t c)
 {
 	if(c=='\n'){
 		_dispNextLine();
-	}else if(c!='\r'){
+	}else if(c!='\r'){		
 		_dispChar(c);
 	}		
 }
 
+uint16_t TEXTAPI::__GetCharCodeInc(const char  ** ps) {
+  const char  * s;
+  uint16_t r;
+  s   = *ps;
+//  #if GUI_SUPPORT_UNICODE
+    r   = _pT->pUC_API->pfGetCharCode(s);
+    s  += _pT->pUC_API->pfGetCharSize(s);
+//  #else
+//    r   = *s;
+//    s  += 1;
+//  #endif
+  *ps = s;
+  return r;
+}
+
 void TEXTAPI::putString(uint16_t x,uint16_t y,const char *str)
 {
+		uint16_t Char;
 		_pT->DispPosX = _pT->disp.x + x;
 		_pT->DispPosY = _pT->disp.y + y;
-		for(;*str;str++){
-			putChar(*str);
+		for(;*str;){
+			Char = __GetCharCodeInc(&str);
+			putChar(Char);
     }
 }
 
@@ -113,12 +136,12 @@ void TEXTAPI::_drawBitmap(int16_t x, int16_t y,
 
 
 
-void TEXTAPI::_dispCharP(char c){
+void TEXTAPI::_dispCharP(uint16_t c){
 	int xe = _pT->disp.x+_pT->disp.w ;
-	// »ñÈ¡×Ö¿â
+	// èŽ·å–å­—åº“
   const GUI_FONT_PROP * pProp = GUIPROP_FindChar(_pT->pAFont->p.pProp, c);
   if (pProp) {
-		// Ö¸ÏòÒªÏÔÊ¾µÄ×Ö·û(×Ö¿âÊ×µØÖ·+Æ«ÒÆ£©
+		// æŒ‡å‘è¦æ˜¾ç¤ºçš„å­—ç¬¦(å­—åº“é¦–åœ°å€+åç§»ï¼‰
     const GUI_CHARINFO * pCharInfo = pProp->paCharInfo+(c-pProp->First);
 
 		_drawBitmap(_pT->DispPosX, _pT->DispPosY,pCharInfo->pData,pCharInfo->XSize, _pT->pAFont->YSize,_pT->disp.bc,_pT->disp.fc);
@@ -135,9 +158,12 @@ void TEXTAPI::_dispCharP(char c){
 										 _pT->disp.bc);
       }
     }
-		// ÒÆ¶¯µ½ÏÂÒ»¸ö×Ö·ûÎ»ÖÃ£¬Ö§³Ö×Ô¶¯»»ÐÐ
-		if(xe-_pT->DispPosX < (pCharInfo->XDist * _pT->pAFont->XMag)<<1) _dispNextLine();
-		else _pT->DispPosX += pCharInfo->XDist * _pT->pAFont->XMag;
+		// ç§»åŠ¨åˆ°ä¸‹ä¸€ä¸ªå­—ç¬¦ä½ç½®ï¼Œæ”¯æŒè‡ªåŠ¨æ¢è¡Œ
+//		if(xe-_pT->DispPosX < (pCharInfo->XDist * _pT->pAFont->XMag)<<1) _dispNextLine();
+//		else _pT->DispPosX += pCharInfo->XDist * _pT->pAFont->XMag;
+			_pT->DispPosX += pCharInfo->XDist * _pT->pAFont->XMag;
+			if((xe - _pT->DispPosX) < (pCharInfo->XDist * _pT->pAFont->XMag)) 
+				_dispNextLine();
   }
 }
 

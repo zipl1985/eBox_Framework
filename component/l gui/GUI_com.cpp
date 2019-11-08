@@ -43,3 +43,21 @@ void GUI_COM::_paraInit(uint16_t w,uint16_t h){
   _para.mode = DispMode_Normal;
 }
 
+void GUI_COM::getAvailiableArea(AREA_S *a){
+	uint8_t d = ( _style & STYLE_3D ) ? 3 : 1;
+	a->xs	= _para.x+d;
+	a->ys = _para.y+d;
+	a->xe = _para.w	+	a->xs	-	d;
+	a->ye = _para.h	+	a->ys	-	d;
+}
+
+void TXT_COM::setTxt(char *s){
+  _str = s;
+  _state |= obj_State_Update;
+}
+
+void TXT_COM::setAlignMode(uint8_t align){
+  _align = align;
+  _state |= obj_State_Visible | obj_State_Update;
+}
+

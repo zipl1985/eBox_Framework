@@ -1036,6 +1036,31 @@
               <FileType>8</FileType>
               <FilePath>..\..\..\component\l gui\GUI_WINDOW.cpp</FilePath>
             </File>
+            <File>
+              <FileName>GUI_LAB.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\l gui\GUI_LAB.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GUI_button.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\l gui\GUI_button.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GUI_Font new song.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\component\l gui\font\GUI_Font new song.c</FilePath>
+            </File>
+            <File>
+              <FileName>FONTEncodeNone.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\component\l gui\FONTEncodeNone.c</FilePath>
+            </File>
+            <File>
+              <FileName>FONTEncodeUTF8.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\l gui\FONTEncodeUTF8.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

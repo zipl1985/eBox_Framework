@@ -103,9 +103,7 @@ typedef struct {
 typedef struct GUI_FONT GUI_FONT;
 
 /**********************************************************************
-*
 *                 FONT Encoding
-*
 ***********************************************************************
 */
 typedef int  tGUI_GetLineDistX(const char  *s, int Len);
@@ -119,6 +117,22 @@ typedef struct {
 } tGUI_ENC_APIList;
 
 extern const tGUI_ENC_APIList GUI_ENC_APIList_SJIS;
+
+/**********************************************************************
+*         UNICODE Encoding
+***********************************************************************
+*/
+typedef uint16_t  tGUI_GetCharCode(const char  *s);
+typedef int  tGUI_GetCharSize(const char  *s);
+typedef int  tGUI_CalcSizeOfChar(uint16_t Char);
+typedef int  tGUI_Encode(char *s, uint16_t Char);
+
+typedef struct {
+  tGUI_GetCharCode*            pfGetCharCode;
+  tGUI_GetCharSize*            pfGetCharSize;
+  tGUI_CalcSizeOfChar*         pfCalcSizeOfChar;
+  tGUI_Encode*                 pfEncode;
+} GUI_UC_ENC_APILIST;
 /*
       ****************************************
       *                                      *
@@ -154,6 +168,15 @@ DECLARE_FONT(PROP);
 	GUIPROP_GetFontInfo,          \
 	GUIPROP_IsInFont,             \
   (tGUI_ENC_APIList*)0
+
+/* PROP: Proportional fonts SJIS */
+DECLARE_FONT(PROP);
+#define GUI_FONTTYPE_PROP_SJIS  \
+  GUIPROP_DispChar,             \
+	GUIPROP_GetCharDistX,         \
+	GUIPROP_GetFontInfo,          \
+	GUIPROP_IsInFont,             \
+  &GUI_ENC_APIList_SJIS
 
 // ×Ö·û½á¹¹Ìå
 struct GUI_FONT {

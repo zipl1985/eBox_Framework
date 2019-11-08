@@ -38,48 +38,48 @@ void WINDOW::_titleInit(){
 	_title.font = _gui->getFont();
 }
 
-void WINDOW::fillFrame(AREA_S *area, E_COLOR c){
-	_gui->fillFrame(area->x, area->y, area->x+area->w, area->y+area->h, _para.bc);
-}
-
 void WINDOW::update(){
 	  uint16_t i;
     GUI_COM *obj;
 
-	_state &= ~obj_State_Update;
+		//		_state &= ~obj_State_Update;
     /* Is the window visible? */
     if ( _state & obj_State_Visible )
-    {
+    {		
+				// 重画当前窗口
 				if(_state & obj_State_ReDraw){
-								  /* 3D style? */
+					_a.xs = _para.x;
+					_a.ys = _para.y;
+					_a.xe = _para.x+_para.w;
+					_a.ye = _para.y+_para.h;
+						/* 3D style? */
 						if ( (_style & STYLE_3D) )
 						{
-								drawObjectFrame(&_para,(E_COLOR *)pal_window);
+								drawObjectFrame(&_a,(E_COLOR *)pal_window);
 						}
 						// 画标题
 						if(_style & STYLE_SHOW_TITLE)
 						{
 								_drawTitle();
-								_style &= ~STYLE_SHOW_TITLE;
+								_style &= ~STYLE_SHOW_TITLE;								
 						}
-												/* Draw window area? */
-						fillFrame(&_para,_para.bc);
+						/* Draw window area? */
+						_gui->fillFrameEx(_a.xs,_a.ys,_a.xe,_a.ye,_para.bc);
 						_state &= ~obj_State_ReDraw;
 				}
 				
-        /* Force each object to be updated! */
-        for(i = 0; i < _componentList.size(); i++)
-        {
-            obj = (GUI_COM*)_componentList.data(i);
-            if ( !(obj->_state & obj_State_Free) && (obj->_state & obj_State_Valid) && (obj->_state & obj_State_Visible) ){
-							obj->_state |= (obj_State_Update | obj_State_ReDraw);
+        // 更新窗口内组件
+						for(i = 0; i < _componentList.size(); i++)
+						{
+						obj = (GUI_COM*)_componentList.data(i);
+						if ( !(obj->_state & obj_State_Free) && (obj->_state & obj_State_Valid)/* && (obj->_state & obj_State_Visible) */){
 							obj->update();
 						}
         }
     }
     else
     {
-			fillFrame(&_para,_gui->getBColor());
+			_gui->fillFrame(_para.x,_para.y,_para.w,_para.h,_gui->getBColor());
     }
 }
 
@@ -89,52 +89,58 @@ void WINDOW::add(GUI_COM *com){
 }
 
 void WINDOW::drawObjectFrame(AREA_S *a, E_COLOR *p){
-		int16_t x=a->x,y=a->y, xe = a->x + a->w ,ye = a->y + a->h;
-	// Frame 0
-		_gui->drawLine(x,y,xe-1,y,*p++);
-		_gui->drawLine(x,y+1,x,ye-1,*p++);
-		_gui->drawLine(x,ye,xe,ye,*p++);
-		_gui->drawLine(xe,y,xe,ye-1,*p++);
+
+	// Frame 0 
+		_gui->drawLine(a->xs,a->ys,a->xe-1,a->ys,*p++);
+		_gui->drawLine(a->xs,a->ys+1,a->xs,a->ye-1,*p++);
+		_gui->drawLine(a->xs,a->ye,a->xe,a->ye,*p++);
+		_gui->drawLine(a->xe,a->ys,a->xe,a->ye-1,*p++);
     // Frame 1
-		_gui->drawLine(x+1,y+1,xe-2,y+1,*p++);
-		_gui->drawLine(x+1,y+2,x+1,ye-2,*p++);
-		_gui->drawLine(x+1,ye-1,xe-1,ye-1,*p++);
-		_gui->drawLine(xe-1,y+1,xe-1,ye-2,*p++);
+		_gui->drawLine(a->xs+1,a->ys+1,a->xe-2,a->ys+1,*p++);
+		_gui->drawLine(a->xs+1,a->ys+2,a->xs+1,a->ye-2,*p++);
+		_gui->drawLine(a->xs+1,a->ye-1,a->xe-1,a->ye-1,*p++);
+		_gui->drawLine(a->xe-1,a->ys+1,a->xe-1,a->ye-2,*p++);
     // Frame 2
-		_gui->drawLine(x+2,y+2,xe-3,y+2,*p++);
-		_gui->drawLine(x+2,y+3,x+2,ye-3,*p++);
-		_gui->drawLine(x+2,ye-2,xe-2,ye-2,*p++);
-		_gui->drawLine(xe-2,y+2,xe-2,ye-3,*p++);
+		_gui->drawLine(a->xs+2,a->ys+2,a->xe-3,a->ys+2,*p++);
+		_gui->drawLine(a->xs+2,a->ys+3,a->xs+2,a->ye-3,*p++);
+		_gui->drawLine(a->xs+2,a->ye-2,a->xe-2,a->ye-2,*p++);
+		_gui->drawLine(a->xe-2,a->ys+2,a->xe-2,a->ye-3,*p++);
 		// 修正坐标
-		_para.x += 3;
-		_para.y += 3;
-		_para.w -= 6;
-		_para.h -= 6;
+		a->xs += 3;
+		a->ys += 3;
+		a->ye -= 3;
+		a->xe -= 3;
 }
 
 void WINDOW::_drawTitle()
 {
-	  TEXT_S txt;
-    int16_t xs, ys, xe, ye;
+	  TEXT_SS txt;
 
     if (_state & obj_State_Valid) 
     {
         /* Draw title */
-        _gui->fillFrame(_para.x, _para.y,_para.w, _para.y + _title.height-1, _title.bc);
-
+				_gui->fillFrameEx(_a.xs,_a.ys,_a.xe,_a.ys+_title.height-1,_title.bc);
         /* Draw title text */
-//        txt.str = _title.str;
         txt.pAFont = _title.font;
-        txt.disp.x = _para.x+1;
-        txt.disp.y = _para.y+1;
-        txt.disp.w = _para.w-1;
+        txt.disp.x = _a.xs+1;
+        txt.disp.y = _a.ys;
+        txt.disp.w = _a.xe - _a.xs -2;
         txt.disp.h = _title.height - 1;
 				txt.disp.bc = _title.bc;
 				txt.disp.fc = _title.fc;
-				_gui->putText(&txt,_title.str,_title.align);
+				txt.align = _title.align;
+				txt.str = _title.str;
+				_gui->ptxt(&txt);
         /* Draw line */
-				_gui->drawLine(_para.x, _para.y + _title.height,_para.x+ _para.w, ys + _title.height, pal_window[11]);
-				_para.y = _para.y +_title.height + 1;		//修正y坐标
-				_para.h -= _para.y;
+				_a.ys	+=	_title.height-1;
+				_gui->drawLine(_a.xs,_a.ys,_a.xe,_a.ys, pal_window[11]);
+				_a.ys += 1;
     }
+}
+
+void WINDOW::getWindow(AREA_S *a){
+		a->xe = _a.xe;
+		a->ye = _a.ye;
+		a->xs = _a.xs;
+		a->ys = _a.ys;
 }

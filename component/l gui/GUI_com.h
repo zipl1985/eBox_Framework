@@ -35,33 +35,58 @@ typedef enum{
 	obj_State_Init		= (obj_State_Free|obj_State_Valid)
 }State_e;
 
+typedef struct{
+	int16_t xs;
+	int16_t ys;
+	int16_t xe;
+	int16_t ye;
+}AREA_S;
+
+/* Window styles */
+#define STYLE_2D                                  (0<<0)
+#define STYLE_3D                                  (1<<0)
+
+
 class GUI_COM 
 {
  public:
  	virtual void 	update(void) = 0;
 	virtual void 	selectWindow(GUI_COM *wnd)= 0;
-  virtual void 	show();
-  virtual void 	hide();
-	
+	void 	show();
+	void 	hide();
+	// 设置组件属性
+	void		setWidth(uint16_t	w)	{ _para.w = w; }
+	void		setHeight(uint16_t	h){ _para.h = h; }
+	void		setPost(uint16_t	x,uint16_t y);
 	void    setForeColor(E_COLOR c);
 	void    setBackColor(E_COLOR c);
+	// 获取组件属性
+	void		getAvailiableArea(AREA_S *a);			//获取可用区域
 	E_COLOR getBackColor(){return _para.bc;};
 	E_COLOR getForeColor(){return _para.fc;};
  
  	uint16_t		_state;    // 组件状态
+	uint8_t			_style;		 // 组件样式
 protected:
-  AREA_S      _para;     // 组件属性
+  WINDOW_S    _para;     // 组件属性
   void _paraInit(uint16_t w,uint16_t h);
 };
 
-class TXT_COM:public GUI_COM 
+
+class TXT_COM:public GUI_COM
 {
- public:
- 	virtual void 	update(void) = 0;
-	virtual void 	selectWindow(GUI_COM *wnd)= 0;
+public:
+  virtual void 	update(void) = 0;
+  virtual void 	selectWindow(GUI_COM *wnd)= 0;
+
+  void setTxt(char * s);
+  void setAlignMode(uint8_t align);
+	void selectFont(const GUI_FONT *f){_pAFont = f;};
 protected:
-//  AREA_S      _para;     // 组件属性
-  TEXT_SS    	_lab;      // 文本属性
+  const GUI_FONT *_pAFont;
+  int16_t         _DX,_DY;
+  uint8_t         _align;		// 对齐模式
+  char 		        *_str;
 };
 
 #endif

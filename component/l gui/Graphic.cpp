@@ -20,12 +20,11 @@
 #include "ebox_core.h"
 
 GUI::GUI(GAPI *pG):TEXTAPI(pG,&_t){
-	_t.pAFont = &GUI_FontGUI_Font8_1;
-	_g.bc = _t.disp.bc = 0xEF7D;
-	_g.fc = _t.disp.fc = 0x0000;
-	_g.mode = _t.disp.mode = DispMode_Normal;
-  _g.w = _t.disp.w = _pDev->getWidth();
-  _g.h = _t.disp.h = _pDev->getHeight();
+	_g.bc = 0xEF7D;
+	_g.fc = 0x0000;
+	_g.mode = DispMode_Normal;
+  _g.w = _pDev->getWidth();
+  _g.h = _pDev->getHeight();
 }
 
 void GUI::begin(){
@@ -147,8 +146,8 @@ void GUI::drawCircle( uint16_t x0, uint16_t y0, uint16_t r, E_COLOR c ){
 void GUI::fillCircle( uint16_t x0, uint16_t y0, uint16_t r, E_COLOR c ){
     int16_t  x, y, xd;
 
-    if ( x0 < 0 ) return;
-    if ( y0 < 0 ) return;
+//    if ( x0 < 0 ) return;
+//    if ( y0 < 0 ) return;
     if ( r <= 0 ) return;
 
     xd = 3 - (r << 1);
@@ -183,8 +182,8 @@ void GUI::fillCircle( uint16_t x0, uint16_t y0, uint16_t r, E_COLOR c ){
 void GUI::drawArc( uint16_t x0, uint16_t y0, uint16_t r, uint8_t s, E_COLOR c ){
     int16_t x, y, xd, yd, e;
 
-    if ( x0 < 0 ) return;
-    if ( y0 < 0 ) return;
+//	if ( x0 < 0 ) return;
+//	if ( y0 < 0 ) return;
     if ( r <= 0 ) return;
 
     xd = 1 - (r << 1);
@@ -324,7 +323,7 @@ void GUI::_drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, E_COLOR 
 
 void GUI::drawBitmap(int16_t x, int16_t y,const uint8_t *bitmap, int16_t w, int16_t h, E_COLOR bcolor,E_COLOR fcolor){
     int16_t i, j, byteWidth = (w + 7) / 8;
-    uint8_t byte; uint8_t flag=1;
+    uint8_t byte; //uint8_t flag=1;
 		if(_pT->disp.mode == DispMode_Rev) swap(&bcolor,&fcolor);
 //		else 
 //			if(_pT->disp.mode == DispMode_Trans) flag=0;
@@ -344,7 +343,9 @@ void GUI::drawBitmap(int16_t x, int16_t y,const uint8_t *bitmap, int16_t w, int1
         }
     }
 }
-
+void GUI::ptxt(TEXT_SS *t){
+	putText((TEXT_S*)t,t->str,t->align);
+}
 void GUI::putText(TEXT_S *t,char *strs,uint8_t align)
 {
 	  uint16_t sl, rc, wl;
@@ -419,6 +420,7 @@ int16_t GUI::_getYAdjust(uint8_t align,uint16_t h)
 	case AlignMode_Top:
 		return 	0;
 	}
+	return 	0;
 }
 
 // 调整Y坐标,返回偏移量
@@ -432,4 +434,10 @@ int16_t GUI::_getXAdjust(uint8_t align,uint16_t stringWidth)
 	case AlignMode_Center:
 		return 	(_pT->disp.w - stringWidth)/2;
 	}
+	return 	0;
+}
+
+void GUI::loop(){
+	if(_wnd == NULL) return;
+	if(_wnd->_state & obj_State_Visible)	_wnd->update();
 }

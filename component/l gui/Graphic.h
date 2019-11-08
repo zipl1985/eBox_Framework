@@ -24,6 +24,8 @@
 #include "G_LCD_interface.h"
 #include "TEXT_interface.h"
 #include "lgui_font.h"
+#include "gui_com.h"
+
 
 class GUI : public TEXTAPI
 {
@@ -61,12 +63,18 @@ public:
 	E_COLOR  	getfColor(){return _g.fc;}
 	int16_t		getWidth(){return  _g.w;}
 	int16_t		getHeight(){return _g.h;}	
-	const GUI_FONT * getFont(){return _t.pAFont;}
+	
 	
 	void 	putText(TEXT_S *t,char *str,uint8_t align);
+	void	ptxt(TEXT_SS *t);
+	
+	void 	loop();
+	void 	setCurrentWND(GUI_COM *wnd){_wnd = wnd;}
 private	:
-	AREA_S 	_g;			// 显示区域信息
-	TEXT_S  _t;			// 显示文本信息
+	WINDOW_S 	_g;			// 显示区域信息
+	TEXT_S  	_t;			// 显示文本信息
+	
+	GUI_COM *_wnd;
 
 	void _drawLine(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, E_COLOR c);		// 画任意角度直线
 	int16_t _getXend(int16_t xe){ return (xe>_g.w ? _g.w : xe);}											// 防止x出边界

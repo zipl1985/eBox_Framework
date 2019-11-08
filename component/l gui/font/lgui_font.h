@@ -41,43 +41,8 @@ Note: The external declarations for the fonts are now also included in
 /* Proportional fonts */
 extern const GUI_FONT GUI_FontGUI_Font8_1;
 extern const GUI_FONT GUI_Font8_ASCII,        GUI_Font8_1;
-extern const GUI_FONT GUI_Font10S_ASCII,      GUI_Font10S_1;
-extern const GUI_FONT GUI_Font10_ASCII,       GUI_Font10_1;
-extern const GUI_FONT GUI_Font13_ASCII,       GUI_Font13_1;
-extern const GUI_FONT GUI_Font13B_ASCII,      GUI_Font13B_1;
-extern const GUI_FONT GUI_Font13H_ASCII,      GUI_Font13H_1;
-extern const GUI_FONT GUI_Font13HB_ASCII,     GUI_Font13HB_1;
-extern const GUI_FONT GUI_Font16_ASCII,       GUI_Font16_1,       GUI_Font16_HK,    GUI_Font16_1HK;
-extern const GUI_FONT GUI_Font16B_ASCII,      GUI_Font16B_1;
-extern const GUI_FONT GUI_Font24_ASCII,       GUI_Font24_1;
-extern const GUI_FONT GUI_Font24B_ASCII,      GUI_Font24B_1;
-extern const GUI_FONT GUI_Font32_ASCII,       GUI_Font32_1;
-extern const GUI_FONT GUI_Font32B_ASCII,      GUI_Font32B_1;
+extern const GUI_FONT GUI_FontGUI_Fontnewsong;
 
-/* Monospaced */
-extern const GUI_FONT GUI_Font4x6;
-extern const GUI_FONT GUI_Font6x8,            GUI_Font6x9;
-extern const GUI_FONT GUI_Font8x8,            GUI_Font8x9;
-extern const GUI_FONT GUI_Font8x10_ASCII;
-extern const GUI_FONT GUI_Font8x12_ASCII;
-extern const GUI_FONT GUI_Font8x13_ASCII,     GUI_Font8x13_1;
-extern const GUI_FONT GUI_Font8x15B_ASCII,    GUI_Font8x15B_1;
-extern const GUI_FONT GUI_Font8x16,           GUI_Font8x17,       GUI_Font8x18;
-extern const GUI_FONT GUI_Font8x16x1x2,       GUI_Font8x16x2x2,   GUI_Font8x16x3x3;
-
-/* Digits */
-extern const GUI_FONT GUI_FontD24x32;
-extern const GUI_FONT GUI_FontD32;
-extern const GUI_FONT GUI_FontD36x48;
-extern const GUI_FONT GUI_FontD48;
-extern const GUI_FONT GUI_FontD48x64;
-extern const GUI_FONT GUI_FontD64;
-extern const GUI_FONT GUI_FontD60x80;
-extern const GUI_FONT GUI_FontD80;
-
-/* Comic fonts */
-extern const GUI_FONT GUI_FontComic18B_ASCII, GUI_FontComic18B_1;
-extern const GUI_FONT GUI_FontComic24B_ASCII, GUI_FontComic24B_1;
 
 typedef enum{
 		DispMode_Normal = 0,									// 0,正常，覆盖任何已经显示的东西

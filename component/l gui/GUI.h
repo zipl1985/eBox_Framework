@@ -82,46 +82,39 @@ const E_COLOR pal_button_released[] =
 };
 #endif
 
-/* Window styles */
-#define STYLE_2D                                  (0<<0)
-#define STYLE_3D                                  (1<<0)
+
 #define STYLE_HIDE_TITLE                          (0<<1)
 #define STYLE_SHOW_TITLE                          (1<<1)
-#define STYLE_3D_DRAW															(1<<2)
 
 
 class WINDOW:public GUI_COM{
 public:
   WINDOW(GUI *g);
 
-	virtual void  update();
+  virtual void  update();
 
-	void 		add(GUI_COM *com);	
-	
-	void  	drawObjectFrame(AREA_S *area, E_COLOR *p);
-	void  	drawFrame(AREA_S *area, E_COLOR c);
-	void  	fillFrame(AREA_S *area, E_COLOR c);
-	
-	GUI * _gui;	  // 图形接口
+  void 		add(GUI_COM *com);
+  void  	drawObjectFrame(AREA_S *area, E_COLOR *p);
+  void		getWindow(AREA_S *a);			//获取可用区域
+  GUI     *_gui;	                  //图形接口
 private:
-	typedef struct
-	{
-			char *str;
-			const GUI_FONT *font;
-			int8_t align;
-			E_COLOR fc;
-			E_COLOR bc;
-			int8_t height;
-	}_TITLE;
+  typedef struct
+  {
+    char *str;
+    const GUI_FONT *font;
+    int8_t align;
+    E_COLOR fc;
+    E_COLOR bc;
+    int8_t height;
+  }_TITLE;
 
-	List	  _componentList;
+  List	  	_componentList;
 
-	uint8_t _style;
-	_TITLE  _title;
-	void    _drawTitle();
+  _TITLE  	_title;
+  AREA_S	_a; 			//窗口有效区域
+  void    _drawTitle();
   void    _titleInit();
   virtual void 	selectWindow(GUI_COM *wnd){};
-  
 };
 
 class LAB:public TXT_COM{
@@ -129,34 +122,32 @@ public:
 	LAB(int16_t x,int16_t y,TEXT_S _t,char* s);
 
 	virtual void 	selectWindow(GUI_COM *wnd);
-	virtual void  update();
-	void setTxt(char * s){_lab.str = s;show();}
+	virtual void  update();	
 protected:
-//	TEXT_S _lab;
-//	char * str;
 	WINDOW *_wnd;
 };
 
-// /* Button states */
-// #define BTN_STATE_RELEASED                            (0<<0)
-// #define BTN_STATE_PRESSED                             (1<<0)
-// #define BTN_STATE_ALWAYS_REDRAW                       (1<<1)
+ /* Button states */
+ #define BTN_STATE_RELEASED                            (0<<0)
+ #define BTN_STATE_PRESSED                             (1<<0)
+ #define BTN_STATE_ALWAYS_REDRAW                       (1<<1)
 
-// /* Button style */
-// #define BTN_STYLE_2D                                  (0<<0)
-// #define BTN_STYLE_3D                                  (1<<0)
-// #define BTN_STYLE_TOGGLE_COLORS                       (1<<1)
-// #define BTN_STYLE_USE_ALTERNATE_COLORS                (1<<2)
-// #define BTN_STYLE_NO_BORDERS                          (1<<3)
-// #define BTN_STYLE_NO_FILL                             (1<<4)
+ /* Button style */
+ #define BTN_STYLE_2D                                  (0<<0)
+ #define BTN_STYLE_3D                                  (1<<0)
+ #define BTN_STYLE_TOGGLE_COLORS                       (1<<1)
+ #define BTN_STYLE_USE_ALTERNATE_COLORS                (1<<2)
+ #define BTN_STYLE_NO_BORDERS                          (1<<3)
+ #define BTN_STYLE_NO_FILL                             (1<<4)
 
-// class BOTTON:public LAB{
-// public:
-	// BOTTON(int16_t x,int16_t y,TEXT_S _lab,char* s);
-	// virtual void update();
-// private:
-	// uint8_t	_bState;
-	// uint8_t _style;
-// };
+class BOTTON:public LAB{
+public:
+	BOTTON(int16_t x,int16_t y,TEXT_S _lab,char* s);
+	virtual void update();
+	uint8_t	_bState;
+private:
+
+	uint8_t _style;
+};
 
 #endif

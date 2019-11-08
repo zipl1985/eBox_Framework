@@ -147,34 +147,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>76</LineNumber>
+          <LineNumber>68</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134229782</Address>
+          <Address>134234034</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\..\component\l gui\drive\lTFT9225_test.cpp</Filename>
+          <Filename>..\..\..\component\l gui\GUI_LAB.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\ebox\../../../component/l gui/drive/lTFT9225_test.cpp\76</Expression>
+          <Expression>\\ebox\../../../component/l gui/GUI_LAB.cpp\68</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>256</LineNumber>
+          <LineNumber>116</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134233472</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\..\component\l gui\drive\lTFT9225.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\..\..\component\l gui\drive\lTFT9225_test.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\ebox\../../../component/l gui/drive/lTFT9225.cpp\256</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -197,6 +197,11 @@
           <count>3</count>
           <WinNumber>1</WinNumber>
           <ItemText>_bit</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>_para</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -258,7 +263,7 @@
 
   <Group>
     <GroupName>start_code</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -638,7 +643,7 @@
 
   <Group>
     <GroupName>ebox_mcu</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -906,7 +911,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>51</FileNumber>
       <FileType>8</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\user\board\stm32f030f4\bsp_ebox.cpp</PathWithFileName>
@@ -1070,7 +1075,7 @@
       <GroupNumber>10</GroupNumber>
       <FileNumber>62</FileNumber>
       <FileType>8</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\component\l gui\lGUI.cpp</PathWithFileName>
@@ -1123,6 +1128,66 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\component\l gui\GUI_WINDOW.cpp</PathWithFileName>
       <FilenameWithoutPath>GUI_WINDOW.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>10</GroupNumber>
+      <FileNumber>67</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\..\component\l gui\GUI_LAB.cpp</PathWithFileName>
+      <FilenameWithoutPath>GUI_LAB.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>10</GroupNumber>
+      <FileNumber>68</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\..\component\l gui\GUI_button.cpp</PathWithFileName>
+      <FilenameWithoutPath>GUI_button.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>10</GroupNumber>
+      <FileNumber>69</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\..\component\l gui\font\GUI_Font new song.c</PathWithFileName>
+      <FilenameWithoutPath>GUI_Font new song.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>10</GroupNumber>
+      <FileNumber>70</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\..\component\l gui\FONTEncodeNone.c</PathWithFileName>
+      <FilenameWithoutPath>FONTEncodeNone.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>10</GroupNumber>
+      <FileNumber>71</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\..\component\l gui\FONTEncodeUTF8.cpp</PathWithFileName>
+      <FilenameWithoutPath>FONTEncodeUTF8.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

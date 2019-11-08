@@ -15,14 +15,16 @@ Copyright 2015 shentq. All Rights Reserved.
 void setup()
 {
     ebox_init();
-
+		PA0.mode(OUTPUT_PP);
 }
 int main(void)
 {
     setup();
     while(1)
-    {
+    {		
+				PA0.set();
         delay_ms(1000);
+				PA0.reset();
     }
 }
 

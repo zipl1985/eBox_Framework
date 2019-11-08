@@ -18,45 +18,54 @@
 #include "gui.h"
 
 LAB::LAB(int16_t x,int16_t y,TEXT_S t,char* s){
-		_lab.pAFont = t.pAFont;
-		_lab.disp.mode = t.disp.mode;
-		_lab.disp.x = x;
-		_lab.disp.y = y;
-		_lab.disp.w = 50;
-		_lab.disp.h = 20;
-		_lab.disp.bc = t.disp.bc;
-		_lab.disp.fc = t.disp.fc;
-		_lab.str = s;
-		_state |= obj_State_Valid|obj_State_ReDraw|obj_State_Visible;	
+		_pAFont = t.pAFont;
+		_para.mode = t.disp.mode;
+		_para.x = x;
+		_para.y = y;
+		_para.w = 50;
+		_para.h = 20;
+		_para.bc = t.disp.bc;
+		_para.fc = t.disp.fc;
+		_str = s;
+		_state = obj_State_Valid|obj_State_ReDraw|obj_State_Visible|obj_State_Update;	
 }
 
 void LAB::selectWindow(GUI_COM *wnd){
 	_wnd = (WINDOW *)wnd;
-	if(_lab.disp.bc == 0) _lab.disp.bc = _wnd->getBackColor() ;
-	if(_lab.disp.fc == 0) _lab.disp.fc = _wnd->getForeColor();
+	if(_para.bc == 0) _para.bc = _wnd->getBackColor();
+	if(_para.fc == 0) _para.fc = _wnd->getForeColor();
 }
 
 
 void LAB::update(){
-		TEXT_S t;
-		t.disp = _lab.disp;
-		t.pAFont = _lab.pAFont;
-    if ( _state & obj_State_Update)
-    {
-        if ( _state & obj_State_Visible)
+		TEXT_SS t;
+		AREA_S 	a;
+		t.pAFont 	= _pAFont;
+		t.align 	= _align;
+		t.str 		= _str;
+	
+    if( _state & obj_State_Update){
+				_wnd->getWindow(&a);
+				// 修正坐标系,使用当前窗口相对坐标
+				a.xs += _para.x;
+				a.ys += _para.y;
+        if( _state & obj_State_Visible)
         {
             /* Full redraw necessary? */
             if ( _state & obj_State_ReDraw )
             {
-								_wnd->_gui->fillFrame(_lab.disp.x, _lab.disp.y, _lab.disp.w, _lab.disp.h, _lab.disp.bc);
-
+								_wnd->_gui->fillFrame(a.xs,a.ys,_para.w,_para.h,_para.bc);
 								/* Draw Textbox text */
-								_wnd->_gui->putText(&t,_lab.str,_lab.align);
 								_state &= ~obj_State_ReDraw;
             }
-        } else
-        {
-           _wnd->_gui->fillFrame(_lab.disp.x, _lab.disp.y, _lab.disp.w, _lab.disp.h, _wnd->getBackColor());
+						t.disp = _para;
+						t.disp.x = a.xs+1;
+						t.disp.y = a.ys+1;
+						t.disp.w = _para.w - 2;
+						t.disp.h = _para.h - 2;
+						_wnd->_gui->ptxt(&t);
+        }else{
+					_wnd->_gui->fillFrame(a.xs,a.ys,_para.w,_para.h,_wnd->getBackColor());
         }
         _state &= ~obj_State_Update;
     }

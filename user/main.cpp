@@ -6,7 +6,6 @@
   * @date   : 2016/08/14
 
   * @brief   ebox application example .
-	*					 2018-7-31	通过引入bsp，定义硬件端口，方便例程可以在不同平台上运行
   *
   * Copyright 2016 shentq. All Rights Reserved.
   ******************************************************************************
@@ -14,24 +13,37 @@
 
 
 #include "ebox.h"
+#include "ADS8866.h"
 #include "bsp_ebox.h"
 
+Ads8866 ad(&PA5,&PA6,&PA4);
 
 void setup()
 {
+    int ret;
     ebox_init();
-    LED1.mode(OUTPUT_PP);
+    uart1.begin(115200);
+    print_log();
+    PB8.mode(OUTPUT_PP);
+
+    ad.begin();
+
 }
 int main(void)
 {
+    float temper;
     setup();
+    uint32_t last = millis();
+    uint16_t hex;
+    float vol;
     while(1)
     {
-        LED1.set();
-        delay_ms(500);
-        LED1.reset();
-        delay_ms(500);
+        hex = ad.read();
+        vol = hex * 2.5 / 65535.0 ;
+        uart1.printf("adc:0X%04x,%0.6fV\r\n",hex,vol);
+        delay_ms(100);
     }
+
 }
 
 

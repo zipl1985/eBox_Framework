@@ -23,6 +23,24 @@
 
 #include "ebox_core.h"
 #include "mcu.h"
+#include "dma.h"
+
+
+#define EBOX_DEBUG_SPI_ENABLE       true
+#define EBOX_DEBUG_SPI_ENABLE_ERR   false
+
+#if EBOX_DEBUG_SPI_ENABLE
+#define spiDebug(...)  ebox_printf("[SPI]:%d: ",__LINE__),ebox_printf(__VA_ARGS__ )
+#else
+#define spiDebug(...)
+#endif
+
+#if EBOX_DEBUG_SPI_ENABLE_ERR
+#define spiDebugErr(fmt, ...)  ebox_printf("[SPI err]:%d: " fmt "\n", __LINE__, __VA_ARGS__)
+#else
+#define spiDebugErr(fmt, ...)
+#endif
+
 
 /*
 	1.目前只测试了SPI1、SPI2，spi3望网友测试
@@ -46,13 +64,26 @@ public:
 
     virtual int8_t  write(uint8_t data);
     virtual uint8_t read();
-    virtual int8_t  read(uint8_t  *recv_data);
 
     virtual int8_t  write_buf(uint8_t *data, uint16_t len);
     virtual int8_t  read_buf(uint8_t *recv_data, uint16_t len);
+
+
 public:
     virtual int8_t  take(Config_t *newConfig);
     virtual int8_t  release(void);
+
+    virtual int8_t      dma_write(uint8_t data);
+    virtual uint8_t     dma_read();
+    virtual uint16_t    dma_write_buf(uint8_t *data, uint16_t len);
+    virtual uint16_t    dma_read_buf(uint8_t *recv_data, uint16_t len);
+    virtual void        dma_wait();
+
+private:
+    uint8_t tx_buffer[1];
+    uint8_t rx_buffer[1];
+
+    void dma_config( void );
 
 private:
     SPI_TypeDef *_spi;
@@ -61,6 +92,11 @@ private:
     Gpio        *_mosi;
 
     uint8_t     _busy;
+    DMA_InitTypeDef dmaRxCfg;
+    DMA_InitTypeDef dmaTxCfg;
+    Dma *dmaTx;
+    Dma *dmaRx;
+
 };
 
 /*

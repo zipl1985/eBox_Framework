@@ -72,14 +72,21 @@
 #define USE_UART1 1
 #define USE_UART2 0
 #define USE_UART3 0
-#define USE_UART4 0
-#define USE_UART5 0
-#define UART_NUM (USE_UART1 + USE_UART2 + USE_UART3 + USE_UART4 + USE_UART5)
+
+#if defined (STM32F10X_HD)
+    #define USE_UART4 0
+    #define USE_UART5 0
+#endif
+
+#if defined (STM32F10X_HD)
+    #define UART_NUM (USE_UART1 + USE_UART2 + USE_UART3 + USE_UART4 + USE_UART5)
+#else
+    #define UART_NUM (USE_UART1 + USE_UART2 + USE_UART3)
+#endif
 
 #define UART_MAX_BITS   8
-
 #if (UART_MAX_BITS > 8)
-#define UART_9_BIT
+    #define UART_9_BIT
 #endif
 
 enum IrqType
@@ -96,11 +103,21 @@ typedef enum
 
 enum Uart_It_Index
 {
-    NUM_UART1  = 0,
-    NUM_UART2  = 1,
-    NUM_UART3  = 2,
-    NUM_UART4  = 3,
-    NUM_UART5  = 4,
+    #if USE_UART1
+    NUM_UART1  ,
+    #endif
+    #if USE_UART2
+    NUM_UART2  ,
+    #endif
+    #if USE_UART3
+    NUM_UART3  ,
+    #endif
+    #if USE_UART4
+    NUM_UART4  ,
+    #endif
+    #if USE_UART5
+    NUM_UART5  ,
+    #endif
 } ;
 
 typedef void (*uart_irq_handler)(uint32_t id, IrqType type);
@@ -186,7 +203,7 @@ private:
     uint8_t             index;
     uint8_t             preemption_priority;
     uint8_t             sub_priority;
-
+    bool                _is_inited;
 protected:
     FunctionPointer _irq[2];
 };

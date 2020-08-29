@@ -47,7 +47,10 @@ void BasicRtc::set_dt_string(String &str)
 
     temp[5] = str.substring(last);
     
-    dt.year = temp[0].toInt();
+    uint16_t y = temp[0].toInt();
+    if(y > 2000)
+       y -= 2000;
+    dt.year = y;
     dt.month = temp[1].toInt();
     dt.date = temp[2].toInt();
     dt.hour = temp[3].toInt();
@@ -90,7 +93,7 @@ String	BasicRtc::get_dt_string()
     return dt_str;
 
 }
-String	BasicRtc::get_date()
+String	BasicRtc::get_date_string()
 {
     String dt_str;
     char buf[20];
@@ -99,7 +102,7 @@ String	BasicRtc::get_date()
     return dt_str;
 
 }
-String	BasicRtc::get_time()
+String	BasicRtc::get_time_string()
 {
     String dt_str;
     char buf[20];
@@ -338,6 +341,7 @@ String ChinaCalendar::get_year_str()
     
     str += sky[SEyear%10];//  甲
     str += earth[SEyear%12];//  子	
+    return str;
 }
 
 String ChinaCalendar::get_month_str()
@@ -666,7 +670,6 @@ bool is_leap_year(uint16_t _year)
 //把一月和二月看成上一年的十三月和十四月
 uint8_t calculate_week(DateTime_t &dt)
 {
-    uint8_t week;
     uint16_t year = dt.year + 2000;
     uint8_t month = dt.month;
     if(month == 1 || month == 2)
@@ -725,7 +728,6 @@ uint16_t day_in_year(DateTime_t &_dt)
 }
 uint8_t get_max_days_in_month(uint16_t year,uint8_t month)
 {
-    bool flag; 
     year += 2000;
     switch(month)
     {
@@ -752,6 +754,7 @@ uint8_t get_max_days_in_month(uint16_t year,uint8_t month)
                 return 28;
             }
     }
+    return 0;
 }
 
 uint16_t	days_between_2_date(DateTime_t &dt_current, DateTime_t &dt_target)
@@ -994,7 +997,6 @@ DateTime_t  date_next_n_days(DateTime_t &dt,uint16_t days)
 
 DateTime_t  date_before_n_days(DateTime_t &dt,uint16_t days)
 {
-    DateTime_t dtTarget = dt;
     uint32_t stamp = get_unix_timestamp(dt);
     stamp -= days * SEC_PER_DAY;
     return unix_timestamp_to_dt(stamp,8);

@@ -5,6 +5,23 @@
 #include "mcu.h"
 #include "FunctionPointer.h"
 
+
+#define EBOX_DEBUG_DMA_ENABLE       true
+#define EBOX_DEBUG_DMA_ENABLE_ERR   false
+
+#if EBOX_DEBUG_SPI_ENABLE
+#define dmaDebug(...)  ebox_printf("[DMA]:%d: ",__LINE__),ebox_printf(__VA_ARGS__ )
+#else
+#define dmaDebug(...)
+#endif
+
+#if EBOX_DEBUG_SPI_ENABLE_ERR
+#define dmaDebugErr(fmt, ...)  ebox_printf("[DMA err]:%d: " fmt "\n", __LINE__, __VA_ARGS__)
+#else
+#define dmaDebugErr(fmt, ...)
+#endif
+
+
 //”√ªß≈‰÷√//////////////
 #if defined (STM32F10X_HD)
     #define DMA_NUM (12)
@@ -56,6 +73,8 @@ public:
     void enable();
     void disable();
     void set_current_len(uint16_t len);
+    uint16_t get_current_len();
+    void wait();
     bool get_flag_status();
     void clear_flag();
 

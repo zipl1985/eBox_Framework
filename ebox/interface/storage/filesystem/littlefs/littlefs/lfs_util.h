@@ -50,7 +50,7 @@ extern "C"
 #include "cmsis_compiler.h"
 #else
 #define MBED_LFS_ENABLE_INFO   false
-#define MBED_LFS_ENABLE_DEBUG  true
+#define MBED_LFS_ENABLE_DEBUG  false
 #define MBED_LFS_ENABLE_WARN   true
 #define MBED_LFS_ENABLE_ERROR  true
 #define MBED_LFS_ENABLE_ASSERT true
@@ -92,7 +92,7 @@ extern "C"
 
 // Runtime assertions
 #if !defined(LFS_NO_ASSERT) && MBED_LFS_ENABLE_ASSERT
-#define LFS_ASSERT(test) assert(test)
+#define LFS_ASSERT(test) 
 #elif !defined(LFS_NO_ASSERT) && !defined(MBED_LFS_ENABLE_ASSERT)
 #define LFS_ASSERT(test) MBED_ASSERT(test)
 #else

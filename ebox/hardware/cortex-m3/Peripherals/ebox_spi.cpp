@@ -19,17 +19,85 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "ebox_spi.h"
+#include "dma.h"
 
-#if EBOX_DEBUG
-// 是否打印调试信息, 1打印,0不打印
-#define debug 0
-#endif
 
-#if debug
-#define  SPI_DEBUG(...) DBG("[SPI]  "),DBG(__VA_ARGS__)
-#else
-#define  SPI_DEBUG(...)
-#endif
+
+/*******************************************************************************
+* Function Name  : SPI1_DMA_Configuration
+* Description    : 配置SPI1_RX的DMA通道2，SPI1_TX的DMA通道3
+* Input          : None
+* Output         : None
+* Return         : None
+* Attention             : 
+*******************************************************************************/
+void mcuSpi::dma_config( void )
+{
+    
+    switch((uint32_t)_spi)
+    {
+        case SPI1_BASE:
+            dmaRx = &Dma1Ch2;
+            dmaTx = &Dma1Ch3;
+            break;
+        case SPI2_BASE:
+            dmaRx = &Dma1Ch4;
+            dmaTx = &Dma1Ch5;
+            break;
+        case SPI3_BASE:
+            dmaRx = new Dma(DMA2_Channel1);
+            dmaTx = new Dma(DMA2_Channel2);
+            break;
+        default :
+            break;
+    }
+//    dmaRx = &Dma1Ch2;
+//    dmaTx = &Dma1Ch3;
+    dmaRx->rcc_enable();
+    dmaRx->nvic(ENABLE, 0, 0);
+    dmaRx->interrupt(DmaItTc, ENABLE);
+    dmaRx->interrupt(DmaItTe, DISABLE);
+    dmaRx->interrupt(DmaItHt, DISABLE);
+    
+    dmaRxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaRxCfg.DMA_MemoryBaseAddr = (uint32_t) rx_buffer;
+    dmaRxCfg.DMA_DIR = DMA_DIR_PeripheralSRC;
+    dmaRxCfg.DMA_BufferSize = 1;
+    dmaRxCfg.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+    dmaRxCfg.DMA_MemoryInc = DMA_MemoryInc_Enable;
+    dmaRxCfg.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+    dmaRxCfg.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+    dmaRxCfg.DMA_Mode = DMA_Mode_Normal;
+    dmaRxCfg.DMA_Priority = DMA_Priority_High;
+    dmaRxCfg.DMA_M2M = DMA_M2M_Disable;
+
+      /* Enable SPI1 DMA RX request */
+//      SPI1->CR2 |= 1<<0; //接收缓冲区DMA使能
+
+    dmaTx->rcc_enable();
+    dmaTx->nvic(ENABLE, 0, 0);
+    dmaTx->interrupt(DmaItTc, ENABLE);
+    dmaTx->interrupt(DmaItTe, DISABLE);
+    dmaTx->interrupt(DmaItHt, DISABLE);
+
+    
+    dmaTxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaTxCfg.DMA_MemoryBaseAddr = (uint32_t) tx_buffer;
+    dmaTxCfg.DMA_DIR = DMA_DIR_PeripheralDST;
+    dmaTxCfg.DMA_BufferSize = 1;
+    dmaTxCfg.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+    dmaTxCfg.DMA_MemoryInc = DMA_MemoryInc_Enable;
+    dmaTxCfg.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+    dmaTxCfg.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+    dmaTxCfg.DMA_Mode = DMA_Mode_Normal;
+    dmaTxCfg.DMA_Priority = DMA_Priority_High;
+    dmaTxCfg.DMA_M2M = DMA_M2M_Disable;
+   
+    /* Enable SPI1 DMA TX request */
+//    SPI1->CR2 |= 1<<1; //发送缓冲区DMA使能
+}
+
+
 mcuSpi::mcuSpi(SPI_TypeDef *SPIx, Gpio *sck, Gpio *miso, Gpio *mosi)
 {
     _busy = 0;
@@ -48,6 +116,7 @@ void mcuSpi::begin(Config_t *newConfig)
 
     rcc_clock_cmd((uint32_t)_spi, ENABLE);
     config(newConfig);
+    dma_config();
 }
 void mcuSpi::config(Config_t *newConfig)
 {
@@ -151,6 +220,7 @@ uint8_t mcuSpi::read_config(void)
   */
 uint8_t mcuSpi::transfer(uint8_t data)
 {
+    spiDebug("\n===========err\n");
     while ((_spi->SR & SPI_I2S_FLAG_TXE) == RESET)
         ;
     _spi->DR = data;
@@ -206,17 +276,7 @@ uint8_t mcuSpi::read()
     return(_spi->DR);
 
 }
-int8_t mcuSpi::read(uint8_t *recv_data)
-{
-    while ((_spi->SR & SPI_I2S_FLAG_TXE) == RESET)
-        ;
-    _spi->DR = 0xff;
-    while ((_spi->SR & SPI_I2S_FLAG_RXNE) == RESET)
-        ;
-    *recv_data = _spi->DR;
 
-    return 0;
-}
 
 /**
   *@brief    连续读取数据
@@ -237,6 +297,170 @@ int8_t mcuSpi::read_buf(uint8_t *recv_data, uint16_t len)
         *recv_data++ = _spi->DR;
     }
     return 0;
+}
+
+
+
+uint8_t mcuSpi::dma_read()
+{
+    //    //清除通道3的标志位
+//    tx_buffer[0] = SPI1->DR ;
+//    //接送前读一次SPI1->DR，保证接收缓冲区为空
+//    while( ( SPI1->SR & 0x02 ) == 0 );
+    
+//    DMA_InitTypeDef DMA_InitStructure;
+
+//    dmaRx->deInit();
+//    dmaTx->deInit();
+//     while(SPI1->SR & 0X80);
+//    SPI_I2S_DMACmd( SPI1, SPI_I2S_DMAReq_Tx, DISABLE) ;
+//    SPI_I2S_DMACmd( SPI1, SPI_I2S_DMAReq_Rx, DISABLE) ;
+//        SPI1->DR ;
+    while(_spi->SR & 0X80);
+    
+    dmaTxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaTxCfg.DMA_MemoryBaseAddr = (uint32_t) tx_buffer;
+    dmaTxCfg.DMA_DIR = DMA_DIR_PeripheralDST;
+    dmaTxCfg.DMA_BufferSize = 1;
+    dmaTxCfg.DMA_MemoryInc = DMA_MemoryInc_Disable;
+    dmaTx->init(&dmaTxCfg);
+    
+    dmaRxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaRxCfg.DMA_MemoryBaseAddr = (uint32_t) rx_buffer;
+    dmaRxCfg.DMA_DIR = DMA_DIR_PeripheralSRC;
+    dmaRxCfg.DMA_BufferSize = 1;
+    dmaRxCfg.DMA_MemoryInc = DMA_MemoryInc_Disable;
+    dmaRx->init(&dmaRxCfg);
+    
+    DMA1->IFCR = 0xF0 ;    //清除通道2的标志位
+    DMA1->IFCR = 0xF00 ;    //清除通道3的标志位
+    
+    dmaRx->enable();
+    dmaTx->enable();
+    
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Tx, ENABLE) ;
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Rx, ENABLE) ;
+    dmaRx->wait();
+    dmaTx->wait();
+//    DMA_Cmd(DMA1_Channel2, DISABLE); 
+//    DMA_Cmd(DMA1_Channel3, DISABLE); 
+    spiDebug("[spi]dma_read(data:0X%02X,1)\n",rx_buffer[0]);
+
+    return rx_buffer[0];
+
+
+}
+int8_t mcuSpi::dma_write(uint8_t data)
+{
+    tx_buffer[0] = data;
+//     tx_buffer[0] = SPI1->DR ;
+    //接送前读一次SPI1->DR，保证接收缓冲区为空
+//    while( ( SPI1->SR & 0x02 ) == 0 );
+       
+//    DMA_InitTypeDef DMA_InitStructure;
+
+//    dmaRx->deInit();
+//    dmaTx->deInit();
+//    SPI1->DR ;
+//    dmaRx->wait();
+//    dmaTx->wait();
+    while(_spi->SR & 0X80);
+    spiDebug("[spi]dma_write(data:0X%02X,1)\n",data);
+
+    dmaTxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaTxCfg.DMA_MemoryBaseAddr = (uint32_t) tx_buffer;
+    dmaTxCfg.DMA_DIR = DMA_DIR_PeripheralDST;
+    dmaTxCfg.DMA_BufferSize = 1;
+    dmaTxCfg.DMA_MemoryInc = DMA_MemoryInc_Disable;
+    dmaTx->init(&dmaTxCfg);
+    
+    dmaRxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaRxCfg.DMA_MemoryBaseAddr = (uint32_t) rx_buffer;
+    dmaRxCfg.DMA_DIR = DMA_DIR_PeripheralSRC;
+    dmaRxCfg.DMA_BufferSize = 1;
+    dmaRxCfg.DMA_MemoryInc = DMA_MemoryInc_Disable;
+    dmaRx->init(&dmaRxCfg);
+    
+    DMA1->IFCR = 0xF0 ;    //清除通道2的标志位
+    DMA1->IFCR = 0xF00 ;    //清除通道3的标志位
+    
+    dmaRx->enable();
+    dmaTx->enable();
+    
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Tx, ENABLE) ;
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Rx, ENABLE) ;
+
+//    DMA_Cmd(DMA1_Channel2, DISABLE); 
+//    DMA_Cmd(DMA1_Channel3, DISABLE); 
+//    SPI_I2S_DMACmd( SPI1, SPI_I2S_DMAReq_Tx, DISABLE) ;
+//    SPI_I2S_DMACmd( SPI1, SPI_I2S_DMAReq_Rx, DISABLE) ;
+    return rx_buffer[0];
+}
+
+uint16_t  mcuSpi::dma_write_buf(uint8_t *data, uint16_t len)
+{ 
+    
+    while(_spi->SR & 0X80);
+    spiDebug("[spi]dma_write_buf(data,%d)\n",len);
+    dmaTxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaTxCfg.DMA_MemoryBaseAddr = (uint32_t) data;
+    dmaTxCfg.DMA_DIR = DMA_DIR_PeripheralDST;
+    dmaTxCfg.DMA_BufferSize = len;
+    dmaTxCfg.DMA_MemoryInc = DMA_MemoryInc_Enable;
+    dmaTx->init(&dmaTxCfg);
+    
+    dmaRxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaRxCfg.DMA_MemoryBaseAddr = (uint32_t) rx_buffer;
+    dmaRxCfg.DMA_DIR = DMA_DIR_PeripheralSRC;
+    dmaRxCfg.DMA_BufferSize = len;
+    dmaRxCfg.DMA_MemoryInc = DMA_MemoryInc_Disable;
+    dmaRx->init(&dmaRxCfg);
+    
+    DMA1->IFCR = 0xF0 ;    //清除通道2的标志位
+    DMA1->IFCR = 0xF00 ;    //清除通道3的标志位
+    
+    dmaRx->enable();
+    dmaTx->enable();
+    
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Tx, ENABLE) ;
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Rx, ENABLE) ;
+    return 0;
+}
+uint16_t  mcuSpi::dma_read_buf(uint8_t *recv_data, uint16_t len)
+{ 
+    
+    while(_spi->SR & 0X80);
+    spiDebug("[spi]dma_read_buf(recv_data,%d)\n",len);
+    dmaTxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaTxCfg.DMA_MemoryBaseAddr = (uint32_t) tx_buffer;
+    dmaTxCfg.DMA_DIR = DMA_DIR_PeripheralDST;
+    dmaTxCfg.DMA_BufferSize = len;
+    dmaTxCfg.DMA_MemoryInc = DMA_MemoryInc_Disable;
+    dmaTx->init(&dmaTxCfg);
+    
+    dmaRxCfg.DMA_PeripheralBaseAddr = (uint32_t)&_spi->DR;
+    dmaRxCfg.DMA_MemoryBaseAddr = (uint32_t) recv_data;
+    dmaRxCfg.DMA_DIR = DMA_DIR_PeripheralSRC;
+    dmaRxCfg.DMA_BufferSize = len;
+    dmaRxCfg.DMA_MemoryInc = DMA_MemoryInc_Enable;
+    dmaRx->init(&dmaRxCfg);
+    
+    DMA1->IFCR = 0xF0 ;    //清除通道2的标志位
+    DMA1->IFCR = 0xF00 ;    //清除通道3的标志位
+    
+    dmaRx->enable();
+    dmaTx->enable();
+    
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Tx, ENABLE) ;
+    SPI_I2S_DMACmd( _spi, SPI_I2S_DMAReq_Rx, ENABLE) ;
+    return len;
+};
+
+
+
+void mcuSpi::dma_wait()
+{
+    while(SPI1->SR & 0X80);
 }
 
 /**

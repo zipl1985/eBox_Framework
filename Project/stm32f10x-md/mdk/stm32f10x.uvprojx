@@ -683,9 +683,9 @@
               <FilePath>..\..\..\ebox\core\myprintf.c</FilePath>
             </File>
             <File>
-              <FileName>retarge.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\ebox\core\retarge.c</FilePath>
+              <FileName>retarge.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\ebox\core\retarge.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -731,6 +731,11 @@
               <FileName>EventManager.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\..\ebox\interface\event\EventManager.h</FilePath>
+            </File>
+            <File>
+              <FileName>ebox_block.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\ebox\interface\storage\blockdevice\ebox_block.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -932,6 +937,11 @@
               <FileType>8</FileType>
               <FilePath>..\..\..\component\edriver\w25xxx.cpp</FilePath>
             </File>
+            <File>
+              <FileName>ADS8866.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\component\edriver\ADS8866.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -961,6 +971,16 @@
               <FileName>ebox_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\..\user\board\spark_f1\ebox_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>sigmoid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\user\sigmoid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>data.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\user\data.cpp</FilePath>
             </File>
           </Files>
         </Group>

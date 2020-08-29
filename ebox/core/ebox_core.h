@@ -25,8 +25,12 @@
 #include "binary.h"
 #include "ebox_config.h"
 
-#define EBOX_VERSION "2.2"
 
+#define EBOX_VERSION "2.3.1"
+
+#define EBOX_MAJOR_VERSION           2 // 
+#define EBOX_MINOR_VERSION           3 // 
+#define EBOX_BUGFIX_VERSION          1 // 
 
 #if __cplusplus
 extern "C" {
@@ -37,8 +41,8 @@ extern "C" {
     extern void        (*interrupts)(void);
     extern int         (*no_interrupts)(void);
     extern void        (*ebox_reset)();
-    extern uint64_t    (*micros)();
-    extern uint64_t    (*millis)();
+    extern uint32_t    (*micros)();
+    extern uint32_t    (*millis)();
     extern void        (*delay_ms)(uint32_t ms);
     extern void        (*delay_us)(uint32_t us);
     extern size_t       ebox_printf(const char *fmt, ...);
